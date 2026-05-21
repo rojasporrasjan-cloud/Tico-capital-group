@@ -1,0 +1,14 @@
+# Claude internal
+.claude/
+
+# Temp scripts
+_patch-*.js
+_verify-*.js
+check_end.ps1
+check_error.ps1
+check_error2.ps1
+start-server.ps1
+
+# OS
+.DS_Store
+Thumbs.db

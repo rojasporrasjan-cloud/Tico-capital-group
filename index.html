@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- ══ CAMBIAR DOMINIO si es distinto ══════════════════════════════════ -->
+    <!-- Dominio actual: https://ticocapitalgroup.com                        -->
+
+    <!-- ── Canonical & hreflang ──────────────────────────────────────────── -->
+    <link rel="canonical" href="https://ticocapitalgroup.com/" />
+    <link rel="alternate" hreflang="es"      href="https://ticocapitalgroup.com/" />
+    <link rel="alternate" hreflang="en"      href="https://ticocapitalgroup.com/?lang=en" />
+    <link rel="alternate" hreflang="x-default" href="https://ticocapitalgroup.com/" />
+
+    <!-- ── Primary SEO ───────────────────────────────────────────────────── -->
+    <title>Tico Capital Group | Luxury Real Estate & Property Management Costa Rica</title>
+    <meta name="description" content="Gestión integral de propiedades y bienes raíces de ultra lujo en Costa Rica. Exclusividad, tranquilidad y resultados para inversionistas en USA." />
+    <meta name="keywords" content="bienes raíces Costa Rica, luxury real estate Costa Rica, propiedades lujo Costa Rica, investment property Costa Rica, real estate investment Costa Rica, Guanacaste real estate, San José luxury homes" />
+    <meta name="author" content="Tico Capital Group" />
+
+    <!-- ── Open Graph (WhatsApp, Facebook, LinkedIn) ─────────────────────── -->
+    <meta property="og:site_name"   content="Tico Capital Group" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content="https://ticocapitalgroup.com/" />
+    <meta property="og:title"       content="Tico Capital Group | Luxury Real Estate" />
+    <meta property="og:description" content="Gestión integral de propiedades y bienes raíces de ultra lujo en Costa Rica. Exclusividad y resultados para inversionistas en USA." />
+    <meta property="og:image"       content="https://ticocapitalgroup.com/logo/logo-horizontal.jpeg" />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale"      content="es_CR" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- ── Twitter / X Card ─────────────────────────────────────────────── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Tico Capital Group | Luxury Real Estate Costa Rica" />
+    <meta name="twitter:description" content="Propiedades de ultra lujo en Costa Rica para inversionistas en USA." />
+    <meta name="twitter:image"       content="https://ticocapitalgroup.com/logo/logo-horizontal.jpeg" />
+
+    <!-- ── Favicon ───────────────────────────────────────────────────────── -->
+    <link rel="icon" type="image/jpeg" href="/logo/logo-horizontal.jpeg" />
+
+    <!-- ── Structured Data: LocalBusiness / RealEstateAgent ─────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["RealEstateAgent", "LocalBusiness"],
+      "name": "Tico Capital Group",
+      "description": "Gestión integral de propiedades y bienes raíces de ultra lujo en Costa Rica. Especialistas en inversión inmobiliaria para clientes en USA.",
+      "url": "https://ticocapitalgroup.com",
+      "logo": "https://ticocapitalgroup.com/logo/logo-horizontal.jpeg",
+      "image": "https://ticocapitalgroup.com/logo/logo-horizontal.jpeg",
+      "telephone": "+50671905506",
+      "email": "info@ticacapitalgroup.com",
+      "priceRange": "$$$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "San José",
+        "addressCountry": "CR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "9.9281",
+        "longitude": "-84.0907"
+      },
+      "areaServed": [
+        { "@type": "Country",  "name": "Costa Rica" },
+        { "@type": "Country",  "name": "United States" }
+      ],
+      "sameAs": [],
+      "knowsLanguage": ["es", "en"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Propiedades de Lujo",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Compra de propiedades de lujo" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Venta de propiedades de lujo" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gestión y administración de propiedades" } }
+        ]
+      }
+    }
+    </script>
+
+    <!-- ── Fonts ──────────────────────────────────────────────────────────── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ── Firebase SDK (carga ANTES del bundle) ─────────────────────────── -->
+    <script type="module" src="/firebase-config.js"></script>
+    <script type="module" crossorigin src="/assets/index-du2sjvid.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-2rp1m4z5.css">
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- ── Botón flotante WhatsApp ───────────────────────────────────────── -->
+    <style>
+      #wa-float {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 9000;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity .4s ease, transform .4s ease;
+        pointer-events: none;
+      }
+      #wa-float.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      #wa-float-tooltip {
+        background: rgba(8,8,8,.92);
+        border: 1px solid rgba(201,169,110,.25);
+        color: #f0ede8;
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 6px;
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateX(6px);
+        transition: opacity .25s, transform .25s;
+        pointer-events: none;
+        backdrop-filter: blur(8px);
+      }
+      #wa-float:hover #wa-float-tooltip {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      #wa-float-btn {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #25d366;
+        box-shadow: 0 4px 20px rgba(37,211,102,.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        flex-shrink: 0;
+        transition: transform .2s, box-shadow .2s;
+        position: relative;
+      }
+      #wa-float-btn:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 28px rgba(37,211,102,.5);
+      }
+      #wa-float-btn::before {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        border: 2px solid rgba(37,211,102,.4);
+        animation: wa-pulse 2.4s ease-out infinite;
+      }
+      #wa-float-btn svg {
+        width: 28px;
+        height: 28px;
+        fill: #fff;
+      }
+      @keyframes wa-pulse {
+        0%   { transform: scale(1);   opacity: .6; }
+        70%  { transform: scale(1.3); opacity: 0; }
+        100% { transform: scale(1.3); opacity: 0; }
+      }
+      @media (max-width: 600px) {
+        #wa-float { bottom: 20px; right: 20px; }
+        #wa-float-tooltip { display: none; }
+      }
+    </style>
+
+    <div id="wa-float">
+      <span id="wa-float-tooltip">Escríbenos por WhatsApp</span>
+      <a id="wa-float-btn"
+         href="https://wa.me/50671905506?text=Hola%2C%20me%20interesa%20una%20propiedad%20de%20Tico%20Capital%20Group"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </a>
+    </div>
+
+    <script>
+      // Aparece 1.5s después de cargar
+      setTimeout(function() {
+        var btn = document.getElementById('wa-float');
+        if (btn) btn.classList.add('visible');
+      }, 1500);
+    </script>
+    <!-- ── /WhatsApp flotante ─────────────────────────────────────────────── -->
+
+    <!-- ── ROI Calculator Widget ────────────────────────────────────────────── -->
+    <style>
+      /* Floating trigger button */
+      #roi-btn {
+        position: fixed;
+        bottom: 28px;
+        left: 28px;
+        z-index: 8900;
+        background: rgba(8, 20, 16, 0.92);
+        border: 1px solid rgba(201, 169, 110, 0.35);
+        border-radius: 28px;
+        padding: 10px 18px;
+        color: rgba(201, 169, 110, 0.85);
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        transition: border-color 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+        opacity: 0;
+        transform: translateY(14px);
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      #roi-btn.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      #roi-btn:hover {
+        border-color: rgba(201, 169, 110, 0.75);
+        color: #c9a96e;
+        box-shadow: 0 4px 20px rgba(134, 111, 67, 0.2);
+        transform: translateY(-2px);
+      }
+
+      /* Overlay */
+      #roi-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.55);
+        z-index: 9200;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      #roi-overlay.open { opacity: 1; }
+
+      /* Panel */
+      #roi-panel {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9201;
+        background: linear-gradient(160deg, #0d1f19 0%, #0a1610 60%, #080f0d 100%);
+        border-top: 1px solid rgba(201, 169, 110, 0.25);
+        border-radius: 20px 20px 0 0;
+        padding: 28px 28px 32px;
+        max-height: 92vh;
+        overflow-y: auto;
+        transform: translateY(100%);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        font-family: 'Inter', sans-serif;
+      }
+      #roi-panel.open { transform: translateY(0); }
+
+      /* Panel inner layout */
+      #roi-inner {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      #roi-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 24px;
+      }
+      #roi-header h2 {
+        margin: 0;
+        color: #f0ede8;
+        font-size: 18px;
+        font-weight: 300;
+        letter-spacing: 0.08em;
+        font-family: 'Cormorant Garamond', serif;
+      }
+      #roi-header p {
+        margin: 4px 0 0;
+        color: rgba(240, 237, 232, 0.4);
+        font-size: 11px;
+        letter-spacing: 0.05em;
+      }
+      #roi-close {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: rgba(255,255,255,0.45);
+        font-size: 16px;
+        line-height: 1;
+        transition: background 0.2s, color 0.2s;
+        flex-shrink: 0;
+      }
+      #roi-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+      /* Grid layout */
+      #roi-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+      @media (max-width: 520px) { #roi-grid { grid-template-columns: 1fr; } }
+
+      .roi-field label {
+        display: block;
+        color: rgba(255,255,255,0.35);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 7px;
+      }
+      .roi-field input {
+        width: 100%;
+        box-sizing: border-box;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 10px;
+        padding: 11px 14px;
+        color: #f0ede8;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .roi-field input:focus { border-color: rgba(201, 169, 110, 0.5); }
+
+      /* Divider */
+      #roi-divider {
+        border: none;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        margin: 0 0 22px;
+      }
+
+      /* Results */
+      #roi-results {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      @media (max-width: 520px) { #roi-results { grid-template-columns: 1fr; } }
+
+      .roi-result {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 12px;
+        padding: 14px 16px;
+      }
+      .roi-result.highlight {
+        background: rgba(134, 111, 67, 0.1);
+        border-color: rgba(201, 169, 110, 0.2);
+      }
+      .roi-result .r-label {
+        color: rgba(255,255,255,0.35);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      .roi-result .r-value {
+        color: #f0ede8;
+        font-size: 22px;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+        font-family: 'Cormorant Garamond', serif;
+        line-height: 1;
+      }
+      .roi-result.highlight .r-value { color: #c9a96e; }
+      .roi-result .r-bar {
+        margin-top: 8px;
+        height: 3px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .roi-result .r-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, rgba(134,111,67,0.6), rgba(201,169,110,0.9));
+        border-radius: 2px;
+        transition: width 0.5s ease;
+      }
+      #roi-disclaimer {
+        color: rgba(255,255,255,0.2);
+        font-size: 10px;
+        text-align: center;
+        margin-top: 18px;
+        letter-spacing: 0.04em;
+        line-height: 1.5;
+      }
+      @media (max-width: 600px) {
+        #roi-btn { bottom: 20px; left: 20px; }
+        #roi-panel { padding: 22px 18px 28px; }
+      }
+    </style>
+
+    <!-- Floating ROI button -->
+    <button id="roi-btn" aria-label="Calculadora de ROI">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <span id="roi-btn-label">ROI</span>
+    </button>
+
+    <!-- Overlay -->
+    <div id="roi-overlay"></div>
+
+    <!-- Calculator panel -->
+    <div id="roi-panel" role="dialog" aria-modal="true" aria-labelledby="roi-title">
+      <div id="roi-inner">
+        <div id="roi-header">
+          <div>
+            <h2 id="roi-title">📊 <span id="roi-title-text">Calculadora de Inversión</span></h2>
+            <p id="roi-subtitle">Estimá el rendimiento de tu propiedad</p>
+          </div>
+          <button id="roi-close" aria-label="Cerrar">✕</button>
+        </div>
+
+        <div id="roi-grid">
+          <div class="roi-field">
+            <label id="lbl-price">Precio de la propiedad</label>
+            <input id="roi-price" type="number" min="0" step="10000" placeholder="1,000,000" />
+          </div>
+          <div class="roi-field">
+            <label id="lbl-rent">Renta mensual esperada</label>
+            <input id="roi-rent" type="number" min="0" step="100" placeholder="4,000" />
+          </div>
+          <div class="roi-field">
+            <label id="lbl-exp">Gastos anuales (%)</label>
+            <input id="roi-exp" type="number" min="0" max="100" step="1" value="20" />
+          </div>
+          <div class="roi-field">
+            <label id="lbl-vac">Tasa de vacancia (%)</label>
+            <input id="roi-vac" type="number" min="0" max="100" step="1" value="5" />
+          </div>
+        </div>
+
+        <hr id="roi-divider" />
+
+        <div id="roi-results">
+          <div class="roi-result highlight">
+            <div class="r-label" id="rl-gross">Rendimiento Bruto</div>
+            <div class="r-value" id="rv-gross">—</div>
+            <div class="r-bar"><div class="r-bar-fill" id="rb-gross" style="width:0%"></div></div>
+          </div>
+          <div class="roi-result highlight">
+            <div class="r-label" id="rl-net">Rendimiento Neto</div>
+            <div class="r-value" id="rv-net">—</div>
+            <div class="r-bar"><div class="r-bar-fill" id="rb-net" style="width:0%"></div></div>
+          </div>
+          <div class="roi-result">
+            <div class="r-label" id="rl-cashflow">Flujo Mensual Neto</div>
+            <div class="r-value" id="rv-cashflow">—</div>
+          </div>
+          <div class="roi-result">
+            <div class="r-label" id="rl-payback">Período de Recupero</div>
+            <div class="r-value" id="rv-payback">—</div>
+          </div>
+          <div class="roi-result">
+            <div class="r-label" id="rl-annual">Ingreso Anual Neto</div>
+            <div class="r-value" id="rv-annual">—</div>
+          </div>
+          <div class="roi-result">
+            <div class="r-label" id="rl-monthly-gross">Renta Bruta Anual</div>
+            <div class="r-value" id="rv-monthly-gross">—</div>
+          </div>
+        </div>
+
+        <p id="roi-disclaimer">* Estimación orientativa. Los valores reales dependen de condiciones del mercado,<br>impuestos locales y gestión de la propiedad.</p>
+      </div>
+    </div>
+
+    <script>
+    (function() {
+      var btn      = document.getElementById('roi-btn');
+      var overlay  = document.getElementById('roi-overlay');
+      var panel    = document.getElementById('roi-panel');
+      var closeBtn = document.getElementById('roi-close');
+
+      // ── Language detection ────────────────────────────────────────────
+      var lang = (location.search.indexOf('lang=en') > -1 ||
+                  (typeof localStorage !== 'undefined' && localStorage.getItem('lang') === 'en'))
+                 ? 'en' : 'es';
+
+      if (lang === 'en') {
+        document.getElementById('roi-btn-label').textContent    = 'ROI';
+        document.getElementById('roi-title-text').textContent   = 'Investment Calculator';
+        document.getElementById('roi-subtitle').textContent     = 'Estimate your property return';
+        document.getElementById('lbl-price').textContent        = 'Property price';
+        document.getElementById('lbl-rent').textContent         = 'Expected monthly rent';
+        document.getElementById('lbl-exp').textContent          = 'Annual expenses (%)';
+        document.getElementById('lbl-vac').textContent          = 'Vacancy rate (%)';
+        document.getElementById('rl-gross').textContent         = 'Gross Yield';
+        document.getElementById('rl-net').textContent           = 'Net Yield';
+        document.getElementById('rl-cashflow').textContent      = 'Monthly Net Cash Flow';
+        document.getElementById('rl-payback').textContent       = 'Payback Period';
+        document.getElementById('rl-annual').textContent        = 'Annual Net Income';
+        document.getElementById('rl-monthly-gross').textContent = 'Annual Gross Rent';
+        document.getElementById('roi-disclaimer').innerHTML     =
+          '* Indicative estimate. Actual values depend on market conditions,<br>local taxes and property management.';
+        document.querySelector('#roi-close').setAttribute('aria-label','Close');
+      }
+
+      // ── Show button after delay ───────────────────────────────────────
+      setTimeout(function() { btn.classList.add('visible'); }, 2000);
+
+      // ── Open / Close ──────────────────────────────────────────────────
+      function openCalc() {
+        overlay.style.display = 'block';
+        requestAnimationFrame(function() {
+          overlay.classList.add('open');
+          panel.classList.add('open');
+        });
+        // Try to pre-fill from last viewed property
+        var prop = window._inquiryProp;
+        if (prop && prop.price) {
+          var priceField = document.getElementById('roi-price');
+          if (!priceField.value) {
+            var num = Number(String(prop.price).replace(/[^0-9]/g, ''));
+            if (num > 0) { priceField.value = num; recalc(); }
+          }
+        }
+      }
+
+      function closeCalc() {
+        overlay.classList.remove('open');
+        panel.classList.remove('open');
+        setTimeout(function() { overlay.style.display = 'none'; }, 350);
+      }
+
+      btn.addEventListener('click', openCalc);
+      closeBtn.addEventListener('click', closeCalc);
+      overlay.addEventListener('click', closeCalc);
+
+      // ── Calculation ───────────────────────────────────────────────────
+      function fmt(n) {
+        return '$' + Math.round(n).toLocaleString('en-US');
+      }
+      function fmtPct(n) {
+        return n.toFixed(2) + '%';
+      }
+
+      function recalc() {
+        var price  = parseFloat(document.getElementById('roi-price').value) || 0;
+        var rent   = parseFloat(document.getElementById('roi-rent').value)  || 0;
+        var expPct = parseFloat(document.getElementById('roi-exp').value)   || 0;
+        var vacPct = parseFloat(document.getElementById('roi-vac').value)   || 0;
+
+        if (price <= 0 || rent <= 0) {
+          ['rv-gross','rv-net','rv-cashflow','rv-payback','rv-annual','rv-monthly-gross']
+            .forEach(function(id) { document.getElementById(id).textContent = '—'; });
+          document.getElementById('rb-gross').style.width = '0%';
+          document.getElementById('rb-net').style.width   = '0%';
+          return;
+        }
+
+        var grossAnnual = rent * 12;
+        var vacLoss     = grossAnnual * (vacPct / 100);
+        var effectiveIncome = grossAnnual - vacLoss;
+        var expenses    = effectiveIncome * (expPct / 100);
+        var netAnnual   = effectiveIncome - expenses;
+        var grossYield  = (grossAnnual / price) * 100;
+        var netYield    = (netAnnual / price) * 100;
+        var cashflow    = netAnnual / 12;
+        var payback     = netAnnual > 0 ? price / netAnnual : Infinity;
+
+        document.getElementById('rv-gross').textContent         = fmtPct(grossYield);
+        document.getElementById('rv-net').textContent           = fmtPct(netYield);
+        document.getElementById('rv-cashflow').textContent      = fmt(cashflow);
+        document.getElementById('rv-payback').textContent       = isFinite(payback) ? payback.toFixed(1) + ' ' + (lang === 'en' ? 'yrs' : 'años') : '∞';
+        document.getElementById('rv-annual').textContent        = fmt(netAnnual);
+        document.getElementById('rv-monthly-gross').textContent = fmt(grossAnnual);
+
+        // Progress bars — max reference is 15%
+        var maxRef = 15;
+        document.getElementById('rb-gross').style.width = Math.min(100, (grossYield / maxRef) * 100) + '%';
+        document.getElementById('rb-net').style.width   = Math.min(100, (netYield   / maxRef) * 100) + '%';
+      }
+
+      // Live recalc on every input change
+      ['roi-price','roi-rent','roi-exp','roi-vac'].forEach(function(id) {
+        document.getElementById(id).addEventListener('input', recalc);
+      });
+    })();
+    </script>
+    <!-- ── /ROI Calculator Widget ─────────────────────────────────────────── -->
+
+    <!-- ── Cookie Consent Banner ────────────────────────────────────────────── -->
+    <style>
+      #cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        background: rgba(4, 12, 11, 0.97);
+        border-top: 1px solid rgba(201, 169, 110, 0.2);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        padding: 18px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+        transform: translateY(100%);
+        opacity: 0;
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
+        font-family: 'Inter', sans-serif;
+      }
+      #cookie-banner.visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      #cookie-banner.hiding {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      #cookie-text {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        flex: 1;
+        min-width: 240px;
+      }
+      #cookie-icon {
+        font-size: 20px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      #cookie-copy p {
+        margin: 0;
+        color: rgba(240, 237, 232, 0.65);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+      }
+      #cookie-copy p a {
+        color: rgba(201, 169, 110, 0.8);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        cursor: pointer;
+      }
+      #cookie-btns {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      #cookie-reject {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        padding: 9px 20px;
+        color: rgba(255, 255, 255, 0.45);
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        cursor: pointer;
+        transition: border-color 0.2s, color 0.2s;
+        white-space: nowrap;
+      }
+      #cookie-reject:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.7);
+      }
+      #cookie-accept {
+        background: linear-gradient(135deg, rgba(134, 111, 67, 0.9) 0%, rgba(201, 169, 110, 0.85) 100%);
+        border: 1px solid rgba(201, 169, 110, 0.5);
+        border-radius: 8px;
+        padding: 9px 22px;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        transition: filter 0.2s, transform 0.15s;
+        white-space: nowrap;
+      }
+      #cookie-accept:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+      }
+      @media (max-width: 600px) {
+        #cookie-banner { padding: 16px 18px; }
+        #cookie-btns { width: 100%; justify-content: flex-end; }
+        #cookie-copy p { font-size: 11px; }
+      }
+    </style>
+
+    <div id="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
+      <div id="cookie-text">
+        <span id="cookie-icon">🍪</span>
+        <div id="cookie-copy">
+          <p id="cookie-msg">
+            Usamos cookies para mejorar tu experiencia de navegación. Puedes aceptar todas o solo las esenciales.
+          </p>
+        </div>
+      </div>
+      <div id="cookie-btns">
+        <button id="cookie-reject">Solo esenciales</button>
+        <button id="cookie-accept">Aceptar todo</button>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        var STORAGE_KEY = 'tcg_cookie_consent';
+        var banner = document.getElementById('cookie-banner');
+        var msgEl  = document.getElementById('cookie-msg');
+        var rejectBtn = document.getElementById('cookie-reject');
+        var acceptBtn = document.getElementById('cookie-accept');
+
+        // Detect language from URL or localStorage
+        var lang = (location.search.indexOf('lang=en') > -1 ||
+                    (typeof localStorage !== 'undefined' && localStorage.getItem('lang') === 'en'))
+                   ? 'en' : 'es';
+
+        if (lang === 'en') {
+          msgEl.textContent = 'We use cookies to improve your browsing experience. You can accept all or only the essential ones.';
+          rejectBtn.textContent = 'Essential only';
+          acceptBtn.textContent = 'Accept all';
+          banner.setAttribute('aria-label', 'Cookie consent');
+        }
+
+        // Don't show if already decided
+        if (localStorage.getItem(STORAGE_KEY)) return;
+
+        // Show banner after short delay
+        setTimeout(function() {
+          banner.classList.add('visible');
+        }, 800);
+
+        function dismiss(choice) {
+          localStorage.setItem(STORAGE_KEY, choice);
+          banner.classList.add('hiding');
+          setTimeout(function() {
+            banner.style.display = 'none';
+          }, 450);
+        }
+
+        acceptBtn.addEventListener('click', function() { dismiss('accepted'); });
+        rejectBtn.addEventListener('click', function() { dismiss('rejected'); });
+      })();
+    </script>
+    <!-- ── /Cookie Consent Banner ─────────────────────────────────────────── -->
+
+    <!-- ── USD / ₡ Currency Toggle ──────────────────────────────────────────── -->
+    <style>
+      #crc-toggle {
+        position: fixed;
+        bottom: 28px;
+        left: 110px;
+        z-index: 8900;
+        background: rgba(8, 20, 16, 0.92);
+        border: 1px solid rgba(201, 169, 110, 0.35);
+        border-radius: 28px;
+        padding: 0;
+        color: rgba(201, 169, 110, 0.85);
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(14px);
+        pointer-events: none;
+        transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.25s;
+      }
+      #crc-toggle.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+      #crc-toggle:hover { border-color: rgba(201, 169, 110, 0.75); }
+      .crc-opt {
+        padding: 9px 14px;
+        transition: background 0.2s, color 0.2s;
+        white-space: nowrap;
+      }
+      .crc-opt.active {
+        background: rgba(201, 169, 110, 0.18);
+        color: #c9a96e;
+      }
+      @media (max-width: 600px) {
+        #crc-toggle { bottom: 20px; left: 80px; font-size: 10px; }
+        .crc-opt { padding: 8px 10px; }
+      }
+    </style>
+
+    <button id="crc-toggle" aria-label="Cambiar moneda / Currency toggle" title="Cambiar moneda">
+      <span class="crc-opt active" id="crc-usd">$ USD</span>
+      <span class="crc-opt"        id="crc-crc">₡ CRC</span>
+    </button>
+
+    <script>
+    (function() {
+      var btn   = document.getElementById('crc-toggle');
+      var usdEl = document.getElementById('crc-usd');
+      var crcEl = document.getElementById('crc-crc');
+      window._showCRC = false;
+
+      setTimeout(function() { btn.classList.add('visible'); }, 2200);
+
+      btn.addEventListener('click', function() {
+        window._showCRC = !window._showCRC;
+        usdEl.classList.toggle('active', !window._showCRC);
+        crcEl.classList.toggle('active',  window._showCRC);
+        // Trigger React re-render in hf() via custom event
+        document.dispatchEvent(new CustomEvent('tcg-toggle-crc'));
+      });
+    })();
+    </script>
+    <!-- ── /USD / ₡ Currency Toggle ──────────────────────────────────────── -->
+
+    <!-- ── Notifications Modal ──────────────────────────────────────────────── -->
+    <style>
+      #notify-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.6);
+        z-index: 9500;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        align-items: center;
+        justify-content: center;
+      }
+      #notify-overlay.open { display: flex; }
+      #notify-box {
+        background: linear-gradient(160deg, #0d1f19 0%, #0a1610 70%, #080f0d 100%);
+        border: 1px solid rgba(201, 169, 110, 0.25);
+        border-radius: 20px;
+        padding: 36px 32px 32px;
+        width: 100%;
+        max-width: 420px;
+        margin: 16px;
+        font-family: 'Inter', sans-serif;
+        box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+        animation: notify-in 0.35s cubic-bezier(0.16,1,0.3,1);
+      }
+      @keyframes notify-in {
+        from { opacity: 0; transform: scale(0.95) translateY(12px); }
+        to   { opacity: 1; transform: scale(1) translateY(0); }
+      }
+      #notify-box h3 {
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        color: #f0ede8;
+        margin: 0 0 6px;
+      }
+      #notify-box p { color: rgba(240,237,232,0.45); font-size: 12px; line-height: 1.6; margin: 0 0 22px; letter-spacing: 0.02em; }
+      #notify-email {
+        width: 100%;
+        box-sizing: border-box;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 10px;
+        padding: 12px 16px;
+        color: #f0ede8;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        outline: none;
+        margin-bottom: 12px;
+        transition: border-color 0.2s;
+      }
+      #notify-email:focus { border-color: rgba(201,169,110,0.5); }
+      #notify-submit {
+        width: 100%;
+        background: linear-gradient(135deg, rgba(134,111,67,0.85), rgba(201,169,110,0.8));
+        border: 1px solid rgba(201,169,110,0.5);
+        border-radius: 10px;
+        padding: 13px;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        cursor: pointer;
+        transition: filter 0.2s;
+        margin-bottom: 10px;
+      }
+      #notify-submit:hover { filter: brightness(1.1); }
+      #notify-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+      #notify-cancel {
+        width: 100%;
+        background: transparent;
+        border: none;
+        color: rgba(255,255,255,0.3);
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        padding: 6px;
+      }
+      #notify-cancel:hover { color: rgba(255,255,255,0.55); }
+      #notify-success { display: none; text-align: center; padding: 8px 0 4px; }
+      #notify-success .ns-icon { font-size: 36px; margin-bottom: 10px; }
+      #notify-success p { color: rgba(255,255,255,0.55); font-size: 12px; margin: 0; }
+    </style>
+
+    <div id="notify-overlay" role="dialog" aria-modal="true" aria-labelledby="notify-title">
+      <div id="notify-box">
+        <div id="notify-form-area">
+          <h3 id="notify-title">🔔 <span id="nt-title">Alertas de Propiedades</span></h3>
+          <p id="nt-subtitle">Te avisamos cuando se publique una nueva propiedad que podría interesarte.</p>
+          <input id="notify-email" type="email" autocomplete="email" placeholder="tu@email.com" />
+          <button id="notify-submit"><span id="nt-btn">ACTIVAR ALERTAS</span></button>
+          <button id="notify-cancel" id="nt-cancel">Cancelar</button>
+        </div>
+        <div id="notify-success">
+          <div class="ns-icon">✅</div>
+          <h3 id="ns-title" style="font-family:Cormorant Garamond,Georgia,serif;font-size:20px;font-weight:400;color:#c9a96e;margin:0 0 6px">¡Listo!</h3>
+          <p id="ns-msg">Recibirás alertas de nuevas propiedades exclusivas.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    (function() {
+      var overlay   = document.getElementById('notify-overlay');
+      var emailInp  = document.getElementById('notify-email');
+      var submitBtn = document.getElementById('notify-submit');
+      var cancelBtn = document.getElementById('notify-cancel');
+      var formArea  = document.getElementById('notify-form-area');
+      var successEl = document.getElementById('notify-success');
+
+      var lang = (location.search.indexOf('lang=en') > -1 ||
+                  (typeof localStorage !== 'undefined' && localStorage.getItem('lang') === 'en'))
+                 ? 'en' : 'es';
+
+      if (lang === 'en') {
+        document.getElementById('nt-title').textContent    = 'Property Alerts';
+        document.getElementById('nt-subtitle').textContent = 'We\'ll notify you when a new property matching your interests is published.';
+        document.getElementById('nt-btn').textContent      = 'ACTIVATE ALERTS';
+        document.getElementById('ns-title').textContent    = 'Done!';
+        document.getElementById('ns-msg').textContent      = 'You will receive alerts for new exclusive properties.';
+        emailInp.placeholder = 'your@email.com';
+        cancelBtn.textContent = 'Cancel';
+      }
+
+      window._openNotifyModal = function() {
+        overlay.classList.add('open');
+        emailInp.focus();
+      };
+
+      function close() {
+        overlay.classList.remove('open');
+        setTimeout(function() {
+          formArea.style.display = '';
+          successEl.style.display = 'none';
+          emailInp.value = '';
+          submitBtn.disabled = false;
+        }, 300);
+      }
+
+      cancelBtn.addEventListener('click', close);
+      overlay.addEventListener('click', function(ev) {
+        if (ev.target === overlay) close();
+      });
+
+      submitBtn.addEventListener('click', function() {
+        var email = emailInp.value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          emailInp.style.borderColor = 'rgba(220,80,80,0.6)';
+          setTimeout(function() { emailInp.style.borderColor = ''; }, 1500);
+          return;
+        }
+
+        submitBtn.disabled = true;
+
+        // Save to Firestore if available
+        var saved = false;
+        if (window._db && window._fsUtils) {
+          var col = window._fsUtils.collection(window._db, 'notifications');
+          window._fsUtils.addDoc(col, {
+            email: email,
+            lang: lang,
+            status: 'active',
+            createdAt: window._fsUtils.serverTimestamp()
+          }).then(function() {
+            saved = true;
+          }).catch(function(e) {
+            console.warn('Notification save failed:', e);
+          });
+        }
+
+        // Always show success (graceful fallback if Firestore unavailable)
+        formArea.style.display = 'none';
+        successEl.style.display = 'block';
+        setTimeout(close, 3000);
+      });
+    })();
+    </script>
+    <!-- ── /Notifications Modal ───────────────────────────────────────────── -->
+
+    <!-- ── PDF Ficha System ──────────────────────────────────────────────────── -->
+    <!-- Print container (hidden on screen, visible only during window.print()) -->
+    <div id="print-ficha"></div>
+
+    <style>
+      #print-ficha { display: none; }
+
+      @media print {
+        /* Hide everything except the print ficha */
+        body > *:not(#print-ficha) { display: none !important; }
+        #print-ficha {
+          display: block !important;
+          font-family: 'Georgia', 'Times New Roman', serif;
+          color: #1a1a1a;
+          background: #fff;
+          margin: 0;
+          padding: 0;
+        }
+        @page {
+          size: A4;
+          margin: 0;
+        }
+      }
+    </style>
+
+    <script>
+    window._printFicha = function(prop, lang) {
+      var isEN = lang === 'en';
+      var container = document.getElementById('print-ficha');
+      if (!container) return;
+
+      /* ── Build feature list ── */
+      var featsHTML = '';
+      if (prop.features && prop.features.length > 0) {
+        featsHTML = '<div style="margin-bottom:24px">'
+          + '<p style="font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#866f43;margin:0 0 10px">'
+          + (isEN ? 'FEATURES & AMENITIES' : 'CARACTERÍSTICAS Y AMENIDADES') + '</p>'
+          + '<div style="display:flex;flex-wrap:wrap;gap:6px">'
+          + prop.features.map(function(f) {
+              return '<span style="font-size:9px;padding:4px 10px;border:1px solid #c9a96e;border-radius:20px;color:#555;letter-spacing:0.05em">'
+                + f + '</span>';
+            }).join('')
+          + '</div></div>';
+      }
+
+      /* ── Build gallery thumbnails ── */
+      var galleryHTML = '';
+      var imgs = prop.gallery && prop.gallery.length > 1 ? prop.gallery.slice(1, 4) : [];
+      if (imgs.length > 0) {
+        galleryHTML = '<div style="display:grid;grid-template-columns:repeat(' + imgs.length + ',1fr);gap:6px;margin-bottom:24px">'
+          + imgs.map(function(src) {
+              return '<img src="' + src + '" style="width:100%;height:90px;object-fit:cover;border-radius:4px" />';
+            }).join('')
+          + '</div>';
+      }
+
+      /* ── Stats row ── */
+      var stats = [];
+      if (prop.price)    stats.push({ lbl: isEN ? 'Price' : 'Precio',           val: prop.price });
+      if (prop.area)     stats.push({ lbl: isEN ? 'Area' : 'Área',              val: prop.area });
+      if (prop.beds)     stats.push({ lbl: isEN ? 'Bedrooms' : 'Habitaciones',  val: prop.beds });
+      if (prop.baths)    stats.push({ lbl: isEN ? 'Bathrooms' : 'Baños',        val: prop.baths });
+
+      var statsHTML = stats.length > 0
+        ? '<div style="display:grid;grid-template-columns:repeat(' + stats.length + ',1fr);gap:1px;background:#e8e0d0;border-radius:6px;overflow:hidden;margin-bottom:24px">'
+          + stats.map(function(s) {
+              return '<div style="background:#fff;padding:12px 14px;text-align:center">'
+                + '<p style="font-size:8px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#999;margin:0 0 4px">' + s.lbl + '</p>'
+                + '<p style="font-size:15px;font-weight:400;color:#1a1a1a;margin:0">' + s.val + '</p>'
+                + '</div>';
+            }).join('')
+          + '</div>'
+        : '';
+
+      /* ── Full HTML ── */
+      container.innerHTML = ''
+        + '<div style="width:210mm;min-height:297mm;box-sizing:border-box;background:#fff;position:relative">'
+
+        /* Header */
+        + '<div style="background:linear-gradient(135deg,#0d1f19,#1a3028);padding:28px 36px 24px;color:#fff">'
+        +   '<div style="display:flex;justify-content:space-between;align-items:flex-start">'
+        +     '<div>'
+        +       '<p style="font-family:Cormorant Garamond,Georgia,serif;font-size:22px;font-weight:400;letter-spacing:0.12em;margin:0 0 2px;color:#c9a96e">TICO CAPITAL GROUP</p>'
+        +       '<p style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin:0">'
+        +         (isEN ? 'Luxury Real Estate · Costa Rica' : 'Bienes Raíces de Lujo · Costa Rica')
+        +       '</p>'
+        +     '</div>'
+        +     '<div style="text-align:right">'
+        +       '<p style="font-size:8px;color:rgba(255,255,255,0.4);margin:0;letter-spacing:0.06em">ticocapitalgroup.com</p>'
+        +       '<p style="font-size:8px;color:rgba(255,255,255,0.4);margin:4px 0 0;letter-spacing:0.06em">+506 7190-5506</p>'
+        +     '</div>'
+        +   '</div>'
+        + '</div>'
+
+        /* Hero image */
+        + (prop.image ? '<img src="' + prop.image + '" style="width:100%;height:220px;object-fit:cover;display:block" />' : '')
+
+        /* Content */
+        + '<div style="padding:28px 36px 36px">'
+
+        /* Property type badge */
+        + '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">'
+        +   '<div>'
+        +     '<p style="font-size:8px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#866f43;margin:0 0 6px">'
+        +       (prop.type === 'Alquiler' ? (isEN ? 'FOR RENT' : 'EN ALQUILER') : (isEN ? 'FOR SALE' : 'EN VENTA'))
+        +       (prop.tag ? ' · ' + prop.tag : '')
+        +     '</p>'
+        +     '<h1 style="font-family:Cormorant Garamond,Georgia,serif;font-size:26px;font-weight:400;letter-spacing:0.04em;color:#1a1a1a;margin:0 0 6px">' + (prop.title || '') + '</h1>'
+        +     (prop.location ? '<p style="font-size:10px;color:#777;letter-spacing:0.06em;margin:0">📍 ' + prop.location + '</p>' : '')
+        +   '</div>'
+        +   (prop.price ? '<div style="text-align:right;background:#0d1f19;padding:10px 16px;border-radius:6px">'
+        +     '<p style="font-size:8px;color:rgba(255,255,255,0.45);letter-spacing:0.15em;text-transform:uppercase;margin:0 0 3px">'
+        +     (prop.type === 'Alquiler' ? (isEN ? 'MONTHLY' : 'MENSUAL') : (isEN ? 'PRICE' : 'PRECIO'))
+        +     '</p>'
+        +     '<p style="font-family:Cormorant Garamond,Georgia,serif;font-size:20px;color:#c9a96e;font-weight:400;margin:0">' + prop.price + '</p>'
+        +   '</div>' : '')
+        + '</div>'
+
+        /* Stats */
+        + statsHTML
+
+        /* Gallery thumbnails */
+        + galleryHTML
+
+        /* Description */
+        + (prop.description ? '<div style="margin-bottom:24px">'
+        +   '<p style="font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#866f43;margin:0 0 8px">'
+        +   (isEN ? 'DESCRIPTION' : 'DESCRIPCIÓN') + '</p>'
+        +   '<p style="font-size:11px;line-height:1.7;color:#444;margin:0">' + prop.description + '</p>'
+        + '</div>' : '')
+
+        /* Features */
+        + featsHTML
+
+        /* Footer */
+        + '<div style="border-top:1px solid #e8e0d0;padding-top:16px;display:flex;justify-content:space-between;align-items:center">'
+        +   '<div>'
+        +     '<p style="font-size:8px;color:#aaa;letter-spacing:0.08em;margin:0">'
+        +       (isEN ? 'Contact us for more information' : 'Contáctenos para más información')
+        +     '</p>'
+        +     '<p style="font-size:9px;color:#866f43;letter-spacing:0.06em;margin:3px 0 0">info@ticocapitalgroup.com · +506 7190-5506</p>'
+        +   '</div>'
+        +   '<p style="font-size:7px;color:#ccc;margin:0;letter-spacing:0.06em">'
+        +   (isEN ? 'This document is for informational purposes only' : 'Documento informativo · Precios sujetos a cambio')
+        +   '</p>'
+        + '</div>'
+
+        + '</div>' /* /content */
+        + '</div>'; /* /page */
+
+      /* Print and clean up */
+      setTimeout(function() {
+        window.print();
+        setTimeout(function() { container.innerHTML = ''; }, 1000);
+      }, 200);
+    };
+    </script>
+    <!-- ── /PDF Ficha System ───────────────────────────────────────────────── -->
+
+  </body>
+</html>
