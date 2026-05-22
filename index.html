@@ -15,17 +15,17 @@
     <link rel="alternate" hreflang="x-default" href="https://ticocapitalgroup.com/" />
 
     <!-- ── Primary SEO ───────────────────────────────────────────────────── -->
-    <title>Tico Capital Group | Luxury Real Estate & Property Management Costa Rica</title>
-    <meta name="description" content="Gestión integral de propiedades y bienes raíces de ultra lujo en Costa Rica. Exclusividad, tranquilidad y resultados para inversionistas en USA." />
-    <meta name="keywords" content="bienes raíces Costa Rica, luxury real estate Costa Rica, propiedades lujo Costa Rica, investment property Costa Rica, real estate investment Costa Rica, Guanacaste real estate, San José luxury homes" />
+    <title>Tico Capital Group | Real Estate en Costa Rica</title>
+    <meta name="description" content="Compra, venta y administración de propiedades en Costa Rica. Acompañamiento personalizado para costarricenses en EE.UU. e inversionistas internacionales." />
+    <meta name="keywords" content="bienes raíces Costa Rica, real estate Costa Rica, propiedades Costa Rica, investment property Costa Rica, real estate investment Costa Rica, administración propiedades, compra venta propiedades" />
     <meta name="author" content="Tico Capital Group" />
 
     <!-- ── Open Graph (WhatsApp, Facebook, LinkedIn) ─────────────────────── -->
     <meta property="og:site_name"   content="Tico Capital Group" />
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content="https://ticocapitalgroup.com/" />
-    <meta property="og:title"       content="Tico Capital Group | Luxury Real Estate" />
-    <meta property="og:description" content="Gestión integral de propiedades y bienes raíces de ultra lujo en Costa Rica. Exclusividad y resultados para inversionistas en USA." />
+    <meta property="og:title"       content="Tico Capital Group | Real Estate en Costa Rica" />
+    <meta property="og:description" content="Compra, venta y administración de propiedades en Costa Rica. Acompañamiento personalizado para costarricenses en EE.UU. e inversionistas." />
     <meta property="og:image"       content="https://ticocapitalgroup.com/logo/logo-horizontal.jpeg" />
     <meta property="og:image:width"  content="1200" />
     <meta property="og:image:height" content="630" />
@@ -34,8 +34,8 @@
 
     <!-- ── Twitter / X Card ─────────────────────────────────────────────── -->
     <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content="Tico Capital Group | Luxury Real Estate Costa Rica" />
-    <meta name="twitter:description" content="Propiedades de ultra lujo en Costa Rica para inversionistas en USA." />
+    <meta name="twitter:title"       content="Tico Capital Group | Real Estate en Costa Rica" />
+    <meta name="twitter:description" content="Compra, venta y administración de propiedades en Costa Rica para costarricenses en EE.UU." />
     <meta name="twitter:image"       content="https://ticocapitalgroup.com/logo/logo-horizontal.jpeg" />
 
     <!-- ── Favicon ───────────────────────────────────────────────────────── -->
@@ -47,13 +47,13 @@
       "@context": "https://schema.org",
       "@type": ["RealEstateAgent", "LocalBusiness"],
       "name": "Tico Capital Group",
-      "description": "Gestión integral de propiedades y bienes raíces de ultra lujo en Costa Rica. Especialistas en inversión inmobiliaria para clientes en USA.",
+      "description": "Compra, venta y administración de propiedades en Costa Rica. Especialistas en inversión inmobiliaria y acompañamiento para clientes en USA.",
       "url": "https://ticocapitalgroup.com",
       "logo": "https://ticocapitalgroup.com/logo/logo-horizontal.jpeg",
       "image": "https://ticocapitalgroup.com/logo/logo-horizontal.jpeg",
-      "telephone": "+50671905506",
-      "email": "info@ticacapitalgroup.com",
-      "priceRange": "$$$$",
+      "telephone": "+50671805506",
+      "email": "ticocapitalgroup@gmail.com",
+      "priceRange": "$$$",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "San José",
@@ -72,10 +72,10 @@
       "knowsLanguage": ["es", "en"],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Propiedades de Lujo",
+        "name": "Servicios Inmobiliarios en Costa Rica",
         "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Compra de propiedades de lujo" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Venta de propiedades de lujo" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Compra de propiedades en Costa Rica" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Venta de propiedades en Costa Rica" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gestión y administración de propiedades" } }
         ]
       }
@@ -98,519 +98,8 @@
   <body>
     <div id="root"></div>
 
-    <!-- ── Botón flotante WhatsApp ───────────────────────────────────────── -->
-    <style>
-      #wa-float {
-        position: fixed;
-        bottom: 28px;
-        right: 28px;
-        z-index: 9000;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        opacity: 0;
-        transform: translateY(16px);
-        transition: opacity .4s ease, transform .4s ease;
-        pointer-events: none;
-      }
-      #wa-float.visible {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-      #wa-float-tooltip {
-        background: rgba(8,8,8,.92);
-        border: 1px solid rgba(201,169,110,.25);
-        color: #f0ede8;
-        font-family: 'Inter', sans-serif;
-        font-size: 12px;
-        font-weight: 500;
-        padding: 8px 14px;
-        border-radius: 6px;
-        white-space: nowrap;
-        opacity: 0;
-        transform: translateX(6px);
-        transition: opacity .25s, transform .25s;
-        pointer-events: none;
-        backdrop-filter: blur(8px);
-      }
-      #wa-float:hover #wa-float-tooltip {
-        opacity: 1;
-        transform: translateX(0);
-      }
-      #wa-float-btn {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: #25d366;
-        box-shadow: 0 4px 20px rgba(37,211,102,.35);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        flex-shrink: 0;
-        transition: transform .2s, box-shadow .2s;
-        position: relative;
-      }
-      #wa-float-btn:hover {
-        transform: scale(1.08);
-        box-shadow: 0 6px 28px rgba(37,211,102,.5);
-      }
-      #wa-float-btn::before {
-        content: '';
-        position: absolute;
-        inset: -4px;
-        border-radius: 50%;
-        border: 2px solid rgba(37,211,102,.4);
-        animation: wa-pulse 2.4s ease-out infinite;
-      }
-      #wa-float-btn svg {
-        width: 28px;
-        height: 28px;
-        fill: #fff;
-      }
-      @keyframes wa-pulse {
-        0%   { transform: scale(1);   opacity: .6; }
-        70%  { transform: scale(1.3); opacity: 0; }
-        100% { transform: scale(1.3); opacity: 0; }
-      }
-      @media (max-width: 600px) {
-        #wa-float { bottom: 20px; right: 20px; }
-        #wa-float-tooltip { display: none; }
-      }
-    </style>
 
-    <div id="wa-float">
-      <span id="wa-float-tooltip">Escríbenos por WhatsApp</span>
-      <a id="wa-float-btn"
-         href="https://wa.me/50671905506?text=Hola%2C%20me%20interesa%20una%20propiedad%20de%20Tico%20Capital%20Group"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="Contactar por WhatsApp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-      </a>
-    </div>
-
-    <script>
-      // Aparece 1.5s después de cargar
-      setTimeout(function() {
-        var btn = document.getElementById('wa-float');
-        if (btn) btn.classList.add('visible');
-      }, 1500);
-    </script>
-    <!-- ── /WhatsApp flotante ─────────────────────────────────────────────── -->
-
-    <!-- ── ROI Calculator Widget ────────────────────────────────────────────── -->
-    <style>
-      /* Floating trigger button */
-      #roi-btn {
-        position: fixed;
-        bottom: 28px;
-        left: 28px;
-        z-index: 8900;
-        background: rgba(8, 20, 16, 0.92);
-        border: 1px solid rgba(201, 169, 110, 0.35);
-        border-radius: 28px;
-        padding: 10px 18px;
-        color: rgba(201, 169, 110, 0.85);
-        font-family: 'Inter', sans-serif;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        transition: border-color 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
-        opacity: 0;
-        transform: translateY(14px);
-        pointer-events: none;
-        white-space: nowrap;
-      }
-      #roi-btn.visible {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-      #roi-btn:hover {
-        border-color: rgba(201, 169, 110, 0.75);
-        color: #c9a96e;
-        box-shadow: 0 4px 20px rgba(134, 111, 67, 0.2);
-        transform: translateY(-2px);
-      }
-
-      /* Overlay */
-      #roi-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.55);
-        z-index: 9200;
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      #roi-overlay.open { opacity: 1; }
-
-      /* Panel */
-      #roi-panel {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 9201;
-        background: linear-gradient(160deg, #0d1f19 0%, #0a1610 60%, #080f0d 100%);
-        border-top: 1px solid rgba(201, 169, 110, 0.25);
-        border-radius: 20px 20px 0 0;
-        padding: 28px 28px 32px;
-        max-height: 92vh;
-        overflow-y: auto;
-        transform: translateY(100%);
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        font-family: 'Inter', sans-serif;
-      }
-      #roi-panel.open { transform: translateY(0); }
-
-      /* Panel inner layout */
-      #roi-inner {
-        max-width: 700px;
-        margin: 0 auto;
-      }
-      #roi-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 24px;
-      }
-      #roi-header h2 {
-        margin: 0;
-        color: #f0ede8;
-        font-size: 18px;
-        font-weight: 300;
-        letter-spacing: 0.08em;
-        font-family: 'Cormorant Garamond', serif;
-      }
-      #roi-header p {
-        margin: 4px 0 0;
-        color: rgba(240, 237, 232, 0.4);
-        font-size: 11px;
-        letter-spacing: 0.05em;
-      }
-      #roi-close {
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 8px;
-        width: 34px;
-        height: 34px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        color: rgba(255,255,255,0.45);
-        font-size: 16px;
-        line-height: 1;
-        transition: background 0.2s, color 0.2s;
-        flex-shrink: 0;
-      }
-      #roi-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
-
-      /* Grid layout */
-      #roi-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-        margin-bottom: 24px;
-      }
-      @media (max-width: 520px) { #roi-grid { grid-template-columns: 1fr; } }
-
-      .roi-field label {
-        display: block;
-        color: rgba(255,255,255,0.35);
-        font-size: 9px;
-        font-weight: 700;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        margin-bottom: 7px;
-      }
-      .roi-field input {
-        width: 100%;
-        box-sizing: border-box;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 10px;
-        padding: 11px 14px;
-        color: #f0ede8;
-        font-family: 'Inter', sans-serif;
-        font-size: 13px;
-        font-weight: 400;
-        outline: none;
-        transition: border-color 0.2s;
-      }
-      .roi-field input:focus { border-color: rgba(201, 169, 110, 0.5); }
-
-      /* Divider */
-      #roi-divider {
-        border: none;
-        border-top: 1px solid rgba(255,255,255,0.06);
-        margin: 0 0 22px;
-      }
-
-      /* Results */
-      #roi-results {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        margin-bottom: 10px;
-      }
-      @media (max-width: 520px) { #roi-results { grid-template-columns: 1fr; } }
-
-      .roi-result {
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.07);
-        border-radius: 12px;
-        padding: 14px 16px;
-      }
-      .roi-result.highlight {
-        background: rgba(134, 111, 67, 0.1);
-        border-color: rgba(201, 169, 110, 0.2);
-      }
-      .roi-result .r-label {
-        color: rgba(255,255,255,0.35);
-        font-size: 9px;
-        font-weight: 700;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        margin-bottom: 6px;
-      }
-      .roi-result .r-value {
-        color: #f0ede8;
-        font-size: 22px;
-        font-weight: 300;
-        letter-spacing: 0.02em;
-        font-family: 'Cormorant Garamond', serif;
-        line-height: 1;
-      }
-      .roi-result.highlight .r-value { color: #c9a96e; }
-      .roi-result .r-bar {
-        margin-top: 8px;
-        height: 3px;
-        background: rgba(255,255,255,0.06);
-        border-radius: 2px;
-        overflow: hidden;
-      }
-      .roi-result .r-bar-fill {
-        height: 100%;
-        background: linear-gradient(90deg, rgba(134,111,67,0.6), rgba(201,169,110,0.9));
-        border-radius: 2px;
-        transition: width 0.5s ease;
-      }
-      #roi-disclaimer {
-        color: rgba(255,255,255,0.2);
-        font-size: 10px;
-        text-align: center;
-        margin-top: 18px;
-        letter-spacing: 0.04em;
-        line-height: 1.5;
-      }
-      @media (max-width: 600px) {
-        #roi-btn { bottom: 20px; left: 20px; }
-        #roi-panel { padding: 22px 18px 28px; }
-      }
-    </style>
-
-    <!-- Floating ROI button -->
-    <button id="roi-btn" aria-label="Calculadora de ROI">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      <span id="roi-btn-label">ROI</span>
-    </button>
-
-    <!-- Overlay -->
-    <div id="roi-overlay"></div>
-
-    <!-- Calculator panel -->
-    <div id="roi-panel" role="dialog" aria-modal="true" aria-labelledby="roi-title">
-      <div id="roi-inner">
-        <div id="roi-header">
-          <div>
-            <h2 id="roi-title">📊 <span id="roi-title-text">Calculadora de Inversión</span></h2>
-            <p id="roi-subtitle">Estimá el rendimiento de tu propiedad</p>
-          </div>
-          <button id="roi-close" aria-label="Cerrar">✕</button>
-        </div>
-
-        <div id="roi-grid">
-          <div class="roi-field">
-            <label id="lbl-price">Precio de la propiedad</label>
-            <input id="roi-price" type="number" min="0" step="10000" placeholder="1,000,000" />
-          </div>
-          <div class="roi-field">
-            <label id="lbl-rent">Renta mensual esperada</label>
-            <input id="roi-rent" type="number" min="0" step="100" placeholder="4,000" />
-          </div>
-          <div class="roi-field">
-            <label id="lbl-exp">Gastos anuales (%)</label>
-            <input id="roi-exp" type="number" min="0" max="100" step="1" value="20" />
-          </div>
-          <div class="roi-field">
-            <label id="lbl-vac">Tasa de vacancia (%)</label>
-            <input id="roi-vac" type="number" min="0" max="100" step="1" value="5" />
-          </div>
-        </div>
-
-        <hr id="roi-divider" />
-
-        <div id="roi-results">
-          <div class="roi-result highlight">
-            <div class="r-label" id="rl-gross">Rendimiento Bruto</div>
-            <div class="r-value" id="rv-gross">—</div>
-            <div class="r-bar"><div class="r-bar-fill" id="rb-gross" style="width:0%"></div></div>
-          </div>
-          <div class="roi-result highlight">
-            <div class="r-label" id="rl-net">Rendimiento Neto</div>
-            <div class="r-value" id="rv-net">—</div>
-            <div class="r-bar"><div class="r-bar-fill" id="rb-net" style="width:0%"></div></div>
-          </div>
-          <div class="roi-result">
-            <div class="r-label" id="rl-cashflow">Flujo Mensual Neto</div>
-            <div class="r-value" id="rv-cashflow">—</div>
-          </div>
-          <div class="roi-result">
-            <div class="r-label" id="rl-payback">Período de Recupero</div>
-            <div class="r-value" id="rv-payback">—</div>
-          </div>
-          <div class="roi-result">
-            <div class="r-label" id="rl-annual">Ingreso Anual Neto</div>
-            <div class="r-value" id="rv-annual">—</div>
-          </div>
-          <div class="roi-result">
-            <div class="r-label" id="rl-monthly-gross">Renta Bruta Anual</div>
-            <div class="r-value" id="rv-monthly-gross">—</div>
-          </div>
-        </div>
-
-        <p id="roi-disclaimer">* Estimación orientativa. Los valores reales dependen de condiciones del mercado,<br>impuestos locales y gestión de la propiedad.</p>
-      </div>
-    </div>
-
-    <script>
-    (function() {
-      var btn      = document.getElementById('roi-btn');
-      var overlay  = document.getElementById('roi-overlay');
-      var panel    = document.getElementById('roi-panel');
-      var closeBtn = document.getElementById('roi-close');
-
-      // ── Language detection ────────────────────────────────────────────
-      var lang = (location.search.indexOf('lang=en') > -1 ||
-                  (typeof localStorage !== 'undefined' && localStorage.getItem('lang') === 'en'))
-                 ? 'en' : 'es';
-
-      if (lang === 'en') {
-        document.getElementById('roi-btn-label').textContent    = 'ROI';
-        document.getElementById('roi-title-text').textContent   = 'Investment Calculator';
-        document.getElementById('roi-subtitle').textContent     = 'Estimate your property return';
-        document.getElementById('lbl-price').textContent        = 'Property price';
-        document.getElementById('lbl-rent').textContent         = 'Expected monthly rent';
-        document.getElementById('lbl-exp').textContent          = 'Annual expenses (%)';
-        document.getElementById('lbl-vac').textContent          = 'Vacancy rate (%)';
-        document.getElementById('rl-gross').textContent         = 'Gross Yield';
-        document.getElementById('rl-net').textContent           = 'Net Yield';
-        document.getElementById('rl-cashflow').textContent      = 'Monthly Net Cash Flow';
-        document.getElementById('rl-payback').textContent       = 'Payback Period';
-        document.getElementById('rl-annual').textContent        = 'Annual Net Income';
-        document.getElementById('rl-monthly-gross').textContent = 'Annual Gross Rent';
-        document.getElementById('roi-disclaimer').innerHTML     =
-          '* Indicative estimate. Actual values depend on market conditions,<br>local taxes and property management.';
-        document.querySelector('#roi-close').setAttribute('aria-label','Close');
-      }
-
-      // ── Show button after delay ───────────────────────────────────────
-      setTimeout(function() { btn.classList.add('visible'); }, 2000);
-
-      // ── Open / Close ──────────────────────────────────────────────────
-      function openCalc() {
-        overlay.style.display = 'block';
-        requestAnimationFrame(function() {
-          overlay.classList.add('open');
-          panel.classList.add('open');
-        });
-        // Try to pre-fill from last viewed property
-        var prop = window._inquiryProp;
-        if (prop && prop.price) {
-          var priceField = document.getElementById('roi-price');
-          if (!priceField.value) {
-            var num = Number(String(prop.price).replace(/[^0-9]/g, ''));
-            if (num > 0) { priceField.value = num; recalc(); }
-          }
-        }
-      }
-
-      function closeCalc() {
-        overlay.classList.remove('open');
-        panel.classList.remove('open');
-        setTimeout(function() { overlay.style.display = 'none'; }, 350);
-      }
-
-      btn.addEventListener('click', openCalc);
-      closeBtn.addEventListener('click', closeCalc);
-      overlay.addEventListener('click', closeCalc);
-
-      // ── Calculation ───────────────────────────────────────────────────
-      function fmt(n) {
-        return '$' + Math.round(n).toLocaleString('en-US');
-      }
-      function fmtPct(n) {
-        return n.toFixed(2) + '%';
-      }
-
-      function recalc() {
-        var price  = parseFloat(document.getElementById('roi-price').value) || 0;
-        var rent   = parseFloat(document.getElementById('roi-rent').value)  || 0;
-        var expPct = parseFloat(document.getElementById('roi-exp').value)   || 0;
-        var vacPct = parseFloat(document.getElementById('roi-vac').value)   || 0;
-
-        if (price <= 0 || rent <= 0) {
-          ['rv-gross','rv-net','rv-cashflow','rv-payback','rv-annual','rv-monthly-gross']
-            .forEach(function(id) { document.getElementById(id).textContent = '—'; });
-          document.getElementById('rb-gross').style.width = '0%';
-          document.getElementById('rb-net').style.width   = '0%';
-          return;
-        }
-
-        var grossAnnual = rent * 12;
-        var vacLoss     = grossAnnual * (vacPct / 100);
-        var effectiveIncome = grossAnnual - vacLoss;
-        var expenses    = effectiveIncome * (expPct / 100);
-        var netAnnual   = effectiveIncome - expenses;
-        var grossYield  = (grossAnnual / price) * 100;
-        var netYield    = (netAnnual / price) * 100;
-        var cashflow    = netAnnual / 12;
-        var payback     = netAnnual > 0 ? price / netAnnual : Infinity;
-
-        document.getElementById('rv-gross').textContent         = fmtPct(grossYield);
-        document.getElementById('rv-net').textContent           = fmtPct(netYield);
-        document.getElementById('rv-cashflow').textContent      = fmt(cashflow);
-        document.getElementById('rv-payback').textContent       = isFinite(payback) ? payback.toFixed(1) + ' ' + (lang === 'en' ? 'yrs' : 'años') : '∞';
-        document.getElementById('rv-annual').textContent        = fmt(netAnnual);
-        document.getElementById('rv-monthly-gross').textContent = fmt(grossAnnual);
-
-        // Progress bars — max reference is 15%
-        var maxRef = 15;
-        document.getElementById('rb-gross').style.width = Math.min(100, (grossYield / maxRef) * 100) + '%';
-        document.getElementById('rb-net').style.width   = Math.min(100, (netYield   / maxRef) * 100) + '%';
-      }
-
-      // Live recalc on every input change
-      ['roi-price','roi-rent','roi-exp','roi-vac'].forEach(function(id) {
-        document.getElementById(id).addEventListener('input', recalc);
-      });
-    })();
-    </script>
-    <!-- ── /ROI Calculator Widget ─────────────────────────────────────────── -->
+    <!-- ROI Calculator removed -->
 
     <!-- ── Cookie Consent Banner ────────────────────────────────────────────── -->
     <style>
@@ -775,74 +264,7 @@
     </script>
     <!-- ── /Cookie Consent Banner ─────────────────────────────────────────── -->
 
-    <!-- ── USD / ₡ Currency Toggle ──────────────────────────────────────────── -->
-    <style>
-      #crc-toggle {
-        position: fixed;
-        bottom: 28px;
-        left: 110px;
-        z-index: 8900;
-        background: rgba(8, 20, 16, 0.92);
-        border: 1px solid rgba(201, 169, 110, 0.35);
-        border-radius: 28px;
-        padding: 0;
-        color: rgba(201, 169, 110, 0.85);
-        font-family: 'Inter', sans-serif;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        overflow: hidden;
-        opacity: 0;
-        transform: translateY(14px);
-        pointer-events: none;
-        transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.25s;
-      }
-      #crc-toggle.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-      #crc-toggle:hover { border-color: rgba(201, 169, 110, 0.75); }
-      .crc-opt {
-        padding: 9px 14px;
-        transition: background 0.2s, color 0.2s;
-        white-space: nowrap;
-      }
-      .crc-opt.active {
-        background: rgba(201, 169, 110, 0.18);
-        color: #c9a96e;
-      }
-      @media (max-width: 600px) {
-        #crc-toggle { bottom: 20px; left: 80px; font-size: 10px; }
-        .crc-opt { padding: 8px 10px; }
-      }
-    </style>
-
-    <button id="crc-toggle" aria-label="Cambiar moneda / Currency toggle" title="Cambiar moneda">
-      <span class="crc-opt active" id="crc-usd">$ USD</span>
-      <span class="crc-opt"        id="crc-crc">₡ CRC</span>
-    </button>
-
-    <script>
-    (function() {
-      var btn   = document.getElementById('crc-toggle');
-      var usdEl = document.getElementById('crc-usd');
-      var crcEl = document.getElementById('crc-crc');
-      window._showCRC = false;
-
-      setTimeout(function() { btn.classList.add('visible'); }, 2200);
-
-      btn.addEventListener('click', function() {
-        window._showCRC = !window._showCRC;
-        usdEl.classList.toggle('active', !window._showCRC);
-        crcEl.classList.toggle('active',  window._showCRC);
-        // Trigger React re-render in hf() via custom event
-        document.dispatchEvent(new CustomEvent('tcg-toggle-crc'));
-      });
-    })();
-    </script>
-    <!-- ── /USD / ₡ Currency Toggle ──────────────────────────────────────── -->
+    <!-- USD/CRC toggle removed -->
 
     <!-- ── Notifications Modal ──────────────────────────────────────────────── -->
     <style>
@@ -1111,12 +533,12 @@
         +     '<div>'
         +       '<p style="font-family:Cormorant Garamond,Georgia,serif;font-size:22px;font-weight:400;letter-spacing:0.12em;margin:0 0 2px;color:#c9a96e">TICO CAPITAL GROUP</p>'
         +       '<p style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin:0">'
-        +         (isEN ? 'Luxury Real Estate · Costa Rica' : 'Bienes Raíces de Lujo · Costa Rica')
+        +         (isEN ? 'Real Estate · Costa Rica' : 'Bienes Raíces · Costa Rica')
         +       '</p>'
         +     '</div>'
         +     '<div style="text-align:right">'
         +       '<p style="font-size:8px;color:rgba(255,255,255,0.4);margin:0;letter-spacing:0.06em">ticocapitalgroup.com</p>'
-        +       '<p style="font-size:8px;color:rgba(255,255,255,0.4);margin:4px 0 0;letter-spacing:0.06em">+506 7190-5506</p>'
+        +       '<p style="font-size:8px;color:rgba(255,255,255,0.4);margin:4px 0 0;letter-spacing:0.06em">+506 7180-5506</p>'
         +     '</div>'
         +   '</div>'
         + '</div>'
@@ -1167,7 +589,7 @@
         +     '<p style="font-size:8px;color:#aaa;letter-spacing:0.08em;margin:0">'
         +       (isEN ? 'Contact us for more information' : 'Contáctenos para más información')
         +     '</p>'
-        +     '<p style="font-size:9px;color:#866f43;letter-spacing:0.06em;margin:3px 0 0">info@ticocapitalgroup.com · +506 7190-5506</p>'
+        +     '<p style="font-size:9px;color:#866f43;letter-spacing:0.06em;margin:3px 0 0">ticocapitalgroup@gmail.com · +506 7180-5506</p>'
         +   '</div>'
         +   '<p style="font-size:7px;color:#ccc;margin:0;letter-spacing:0.06em">'
         +   (isEN ? 'This document is for informational purposes only' : 'Documento informativo · Precios sujetos a cambio')
