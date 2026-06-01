@@ -413,6 +413,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
         <span class="icon">📝</span> Blog
       </div>
       <div class="sb-grp">Personalización</div>
+      <div class="sb-item" data-sec="team">
+        <span class="icon">👥</span> Equipo
+      </div>
       <div class="sb-item" data-sec="images">
         <span class="icon">🖼️</span> Imágenes
       </div>
@@ -541,6 +544,16 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
             <div id="pw-msg" style="margin-top:10px;font-size:13px;min-height:18px"></div>
           </div>
         </div>
+      </div>
+
+      <!-- ── TEAM ── -->
+      <div class="section" id="sec-team">
+        <div class="sh">
+          <h2>Nuestro Equipo</h2>
+          <button class="btn btn-gold" id="btn-add-team">＋ Agregar Miembro</button>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.6">Agrega los miembros del equipo que aparecerán en la sección "Quiénes Somos" del sitio. Usa fotos profesionales de buena calidad.</p>
+        <div id="team-container"><div class="loading"><div class="spin"></div>Cargando…</div></div>
       </div>
 
       <!-- ── IMAGES ── -->
@@ -841,6 +854,35 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   </div>
 </div>
 
+<!-- ══ MODAL: TEAM MEMBER ════════════════════════════════════════ -->
+<div class="overlay hidden" id="ov-team">
+  <div class="modal modal-sm">
+    <div class="mh"><h2 id="team-modal-title">Agregar Miembro</h2><button class="btn-x" data-close="ov-team">✕</button></div>
+    <div class="mb">
+      <div class="fg-row">
+        <div class="fg"><label>Nombre *</label><input type="text" id="tm-name" required placeholder="Ana González"/></div>
+        <div class="fg"><label>Cargo / Rol *</label><input type="text" id="tm-role" required placeholder="Directora Comercial"/></div>
+      </div>
+      <div class="fg" style="margin-top:14px"><label>Descripción corta</label>
+        <textarea id="tm-bio" rows="3" placeholder="Especialista en propiedades de inversión con 8 años de experiencia en el mercado costarricense."></textarea></div>
+      <div class="fg-row" style="margin-top:14px">
+        <div class="fg"><label>Foto (URL)</label><input type="url" id="tm-photo" placeholder="https://…"/>
+          <img class="img-prev" id="tm-img-prev" alt="preview"/></div>
+        <div class="fg"><label>LinkedIn (URL)</label><input type="url" id="tm-linkedin" placeholder="https://linkedin.com/in/…"/></div>
+      </div>
+      <div class="fg" style="margin-top:14px">
+        <label>Orden de aparición</label>
+        <input type="number" id="tm-order" placeholder="1" min="1"/>
+      </div>
+      <input type="hidden" id="tm-docid"/>
+    </div>
+    <div class="mf">
+      <button class="btn btn-outline" data-close="ov-team">Cancelar</button>
+      <button class="btn btn-gold" id="team-save">Guardar</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══ MODAL: TESTIMONIAL ════════════════════════════════════════ -->
 <div class="overlay hidden" id="ov-testi">
   <div class="modal modal-sm">
@@ -989,7 +1031,8 @@ $('logout-btn').addEventListener('click',async()=>{subs.forEach(u=>u());subs=[];
 // ── Navigation ────────────────────────────────────────────────────
 const titles={dashboard:'Dashboard',properties:'Propiedades',leads:'Leads / Consultas',
   config:'Configuración',testimonials:'Testimonios',blog:'Blog / Noticias',
-  images:'Imágenes del Sitio',texts:'Textos del Sitio',policies:'Políticas'};
+  images:'Imágenes del Sitio',texts:'Textos del Sitio',policies:'Políticas',
+  team:'Equipo'};
 
 document.querySelectorAll('.sb-item').forEach(item=>{
   item.addEventListener('click',()=>{
@@ -1001,6 +1044,7 @@ document.querySelectorAll('.sb-item').forEach(item=>{
     $('topbar-title').textContent=titles[sec]||sec;
     closeSidebar();
     if(sec==='config') loadConfig();
+    if(sec==='team') loadTeam();
     if(sec==='images') loadImages();
     if(sec==='texts') loadTexts();
     if(sec==='policies') loadPolicies();
@@ -1604,6 +1648,80 @@ async function saveBlog(){
   }catch(e){console.error(e);toast('Error al guardar','err');}
   finally{btn.disabled=false;btn.textContent=$('b-docid').value?'Guardar Cambios':'Guardar Artículo';}
 }
+
+// ── TEAM ──────────────────────────────────────────────────────────
+let teamMembers = [];
+function loadTeam(){
+  const c=$('team-container');
+  c.innerHTML='<div class="loading"><div class="spin"></div>Cargando…</div>';
+  // Already have realtime via startListeners? No — team not in startListeners, use onSnapshot
+  onSnapshot(collection(db,'team'),snap=>{
+    teamMembers=snap.docs.map(d=>({...d.data(),_docId:d.id}));
+    teamMembers.sort((a,b)=>(a.order||99)-(b.order||99));
+    renderTeam();
+  },err=>c.innerHTML=`<div class="empty"><div class="empty-icon">⚠️</div><p>${err.message}</p></div>`);
+}
+function renderTeam(){
+  const c=$('team-container');
+  if(!teamMembers.length){
+    c.innerHTML='<div class="empty"><div class="empty-icon">👥</div><p class="empty-txt">Sin miembros del equipo</p><p class="empty-sub">Agrega los miembros del equipo que aparecerán en el sitio.</p></div>';
+    return;
+  }
+  c.innerHTML=`<div class="testi-grid">${teamMembers.map(m=>{
+    return`<div class="testi-card">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px">
+        ${m.photo?`<img class="testi-photo" src="${esc(m.photo)}" style="width:52px;height:52px;border-radius:50%;object-fit:cover" onerror="this.style.display='none'">`:'<div class="testi-photo" style="background:var(--card3);width:52px;height:52px;border-radius:50%"></div>'}
+        <div><div class="testi-name">${esc(m.name||'')}</div><div class="testi-role" style="color:var(--gold)">${esc(m.role||'')}</div></div>
+      </div>
+      ${m.bio?`<p style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px">${esc(m.bio)}</p>`:''}
+      ${m.linkedin?`<a href="${esc(m.linkedin)}" target="_blank" style="font-size:11px;color:var(--blue)">🔗 LinkedIn</a>`:''}
+      <div class="testi-actions">
+        <button class="btn btn-outline btn-sm" style="flex:1" data-te="${esc(m._docId)}">✏ Editar</button>
+        <button class="btn btn-danger btn-sm" data-td="${esc(m._docId)}" data-tn="${esc(m.name||'')}">🗑</button>
+      </div>
+    </div>`;
+  }).join('')}</div>`;
+  teamMembers.forEach(m=>{
+    c.querySelector(`[data-te="${m._docId}"]`)?.addEventListener('click',()=>openTeamEdit(m));
+    c.querySelector(`[data-td="${m._docId}"]`)?.addEventListener('click',()=>openDel(`¿Eliminar a "${m.name||''}" del equipo?`,()=>deleteDoc(doc(db,'team',m._docId))));
+  });
+}
+$('btn-add-team').addEventListener('click',()=>{
+  $('team-modal-title').textContent='Agregar Miembro';
+  $('tm-name').value='';$('tm-role').value='';$('tm-bio').value='';
+  $('tm-photo').value='';$('tm-linkedin').value='';$('tm-order').value='';$('tm-docid').value='';
+  $('tm-img-prev').classList.remove('v');
+  openOv('ov-team');
+});
+function openTeamEdit(m){
+  $('team-modal-title').textContent='Editar Miembro';
+  $('tm-name').value=m.name||'';$('tm-role').value=m.role||'';$('tm-bio').value=m.bio||'';
+  $('tm-photo').value=m.photo||'';$('tm-linkedin').value=m.linkedin||'';
+  $('tm-order').value=m.order||'';$('tm-docid').value=m._docId;
+  const prev=$('tm-img-prev');
+  if(m.photo){prev.src=m.photo;prev.classList.add('v');}else prev.classList.remove('v');
+  openOv('ov-team');
+}
+$('tm-photo').addEventListener('input',e=>{
+  const u=e.target.value.trim();const p=$('tm-img-prev');
+  if(u){p.src=u;p.classList.add('v');}else p.classList.remove('v');
+});
+$('team-save').addEventListener('click',async()=>{
+  if(!$('tm-name').value.trim()||!$('tm-role').value.trim()){toast('Nombre y cargo requeridos','err');return;}
+  const btn=$('team-save');btn.disabled=true;btn.textContent='Guardando…';
+  const data={name:$('tm-name').value.trim(),role:$('tm-role').value.trim(),
+    bio:$('tm-bio').value.trim(),photo:$('tm-photo').value.trim(),
+    linkedin:$('tm-linkedin').value.trim(),
+    order:$('tm-order').value!==''?Number($('tm-order').value):99,
+    updatedAt:serverTimestamp()};
+  try{
+    const docId=$('tm-docid').value;
+    if(docId){await updateDoc(doc(db,'team',docId),data);toast('Miembro actualizado','ok');}
+    else{data.createdAt=serverTimestamp();await addDoc(collection(db,'team'),data);toast('Miembro agregado','ok');}
+    closeOv('ov-team');
+  }catch(e){toast('Error al guardar','err');}
+  finally{btn.disabled=false;btn.textContent='Guardar';}
+});
 
 // ── IMAGES ────────────────────────────────────────────────────────
 const IMG_FIELDS=['hero-main','hero-about','hero-services','hero-contact','logo'];
