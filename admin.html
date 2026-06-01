@@ -1086,6 +1086,12 @@ function startListeners(){
     blogPosts.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
     renderBlog();
   },fsErr('blog-container','blog')));
+  subs.push(onSnapshot(collection(db,'team'),snap=>{
+    teamMembers=snap.docs.map(d=>({...d.data(),_docId:d.id}));
+    teamMembers.sort((a,b)=>(a.order||99)-(b.order||99));
+    // Only re-render if team section is currently active
+    if(document.getElementById('sec-team').classList.contains('active')) renderTeam();
+  },err=>console.error('team listener error:',err)));
 }
 
 // ── DASHBOARD ─────────────────────────────────────────────────────
@@ -1652,14 +1658,8 @@ async function saveBlog(){
 // ── TEAM ──────────────────────────────────────────────────────────
 let teamMembers = [];
 function loadTeam(){
-  const c=$('team-container');
-  c.innerHTML='<div class="loading"><div class="spin"></div>Cargando…</div>';
-  // Already have realtime via startListeners? No — team not in startListeners, use onSnapshot
-  onSnapshot(collection(db,'team'),snap=>{
-    teamMembers=snap.docs.map(d=>({...d.data(),_docId:d.id}));
-    teamMembers.sort((a,b)=>(a.order||99)-(b.order||99));
-    renderTeam();
-  },err=>c.innerHTML=`<div class="empty"><div class="empty-icon">⚠️</div><p>${err.message}</p></div>`);
+  // Data is already live via startListeners — just render
+  renderTeam();
 }
 function renderTeam(){
   const c=$('team-container');
