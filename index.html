@@ -99,7 +99,41 @@
     <div id="root"></div>
 
 
-    <!-- ROI Calculator removed -->
+    <!-- ── Dynamic Config Overrides (reads from Firestore config/site) ── -->
+  <script type="module">
+  import{initializeApp,getApps}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import{getFirestore,doc,getDoc}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+  const _fbCfg={apiKey:'AIzaSyA545fmz2Ufs29IdEh7UPTHMJtMiG6_ay0',authDomain:'tico-capital-group.firebaseapp.com',
+    projectId:'tico-capital-group',storageBucket:'tico-capital-group.firebasestorage.app',
+    messagingSenderId:'428129532061',appId:'1:428129532061:web:592a4d342c4b857d39bc74'};
+  const _app=getApps().length?getApps()[0]:initializeApp(_fbCfg);
+  const _db2=getFirestore(_app);
+  (async()=>{
+    try{
+      const snap=await getDoc(doc(_db2,'config','site'));
+      if(!snap.exists()) return;
+      const cfg=snap.data();
+      // WhatsApp button
+      if(cfg.whatsapp){
+        const wa=cfg.whatsapp.replace(/\D/g,'');
+        document.querySelectorAll('a[href*="wa.me"]').forEach(a=>{
+          a.href=a.href.replace(/wa\.me\/\d+/,`wa.me/${wa}`);
+        });
+      }
+      // Social links
+      if(cfg.instagram) document.querySelectorAll('a[href*="instagram.com/ticocapitalgroup"]').forEach(a=>a.href=cfg.instagram);
+      if(cfg.facebook)  document.querySelectorAll('a[href*="facebook.com"]').forEach(a=>{ if(a.href.includes('facebook.com/ticocapitalgroup')||a.href.includes('facebook.com/share')) a.href=cfg.facebook; });
+      if(cfg.linkedin)  document.querySelectorAll('a[href*="linkedin.com/company/ticocapitalgroup"]').forEach(a=>a.href=cfg.linkedin);
+      // Email
+      if(cfg.email){
+        document.querySelectorAll('a[href*="mailto:ticocapitalgroup@gmail.com"]').forEach(a=>a.href='mailto:'+cfg.email);
+      }
+    }catch(e){/* silent fail */}
+  })();
+  </script>
+  <!-- ── /Dynamic Config Overrides ─────────────────────────────────── -->
+
+  <!-- ROI Calculator removed -->
 
     <!-- ── Cookie Consent Banner ────────────────────────────────────────────── -->
     <style>

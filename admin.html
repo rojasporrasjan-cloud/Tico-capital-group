@@ -210,6 +210,32 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .testi-role{font-size:11px;color:var(--muted)}
 .testi-actions{display:flex;gap:7px;margin-top:14px;padding-top:14px;border-top:1.5px solid var(--border2)}
 
+/* ── IMG PREVIEW ── */
+.img-prev{display:none;width:100%;max-height:160px;object-fit:cover;border-radius:var(--radius);margin-top:8px;border:1.5px solid var(--border2)}
+.img-prev.v{display:block}
+
+/* ── IMAGES SECTION ── */
+.img-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.img-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:20px}
+.img-card h3{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--text);margin-bottom:4px}
+.img-card p{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.img-preview-box{width:100%;height:160px;border-radius:var(--radius);background:var(--card2);border:1.5px dashed var(--border2);overflow:hidden;margin-bottom:12px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px}
+.img-preview-box img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ── TEXTS SECTION ── */
+.texts-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.texts-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:24px}
+.texts-card h3{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--text);margin-bottom:6px}
+.texts-card p{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.5}
+.char-count{font-size:11px;color:var(--muted);text-align:right;margin-top:4px}
+
+/* ── POLICIES SECTION ── */
+.pol-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:24px;margin-bottom:18px}
+.pol-card h3{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--text);margin-bottom:6px}
+.pol-card p{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.5}
+.pol-card textarea{min-height:220px}
+.pol-last{font-size:11px;color:var(--muted);margin-top:8px}
+
 /* ── BLOG CARDS ── */
 .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
 .bc{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;overflow:hidden;transition:all .2s}
@@ -368,6 +394,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
       <div class="sb-logo-txt">Tico Capital Group</div>
     </div>
     <div class="sb-nav">
+      <div class="sb-grp">Contenido</div>
       <div class="sb-item active" data-sec="dashboard">
         <span class="icon">📊</span> Dashboard
       </div>
@@ -377,6 +404,22 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
       </div>
       <div class="sb-item" data-sec="properties">
         <span class="icon">🏠</span> Propiedades
+      </div>
+      <div class="sb-item" data-sec="testimonials">
+        <span class="icon">💬</span> Testimonios
+      </div>
+      <div class="sb-item" data-sec="blog">
+        <span class="icon">📝</span> Blog
+      </div>
+      <div class="sb-grp">Personalización</div>
+      <div class="sb-item" data-sec="images">
+        <span class="icon">🖼️</span> Imágenes
+      </div>
+      <div class="sb-item" data-sec="texts">
+        <span class="icon">✏️</span> Textos del Sitio
+      </div>
+      <div class="sb-item" data-sec="policies">
+        <span class="icon">📄</span> Políticas
       </div>
       <div class="sb-item" data-sec="config">
         <span class="icon">⚙️</span> Configuración
@@ -461,7 +504,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
         <div class="sh"><h2>Configuración</h2>
           <button class="btn btn-gold" id="btn-save-config">💾 Guardar Cambios</button>
         </div>
-        <div class="config-grid">
+        <div class="config-grid" style="grid-template-columns:1fr 1fr">
           <div class="config-card">
             <h3>📱 Contacto directo</h3>
             <p style="font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">Estos datos aparecen en el botón de WhatsApp y el formulario de contacto del sitio.</p>
@@ -480,6 +523,159 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
             <div class="fg"><label>LinkedIn</label>
               <input type="url" id="cfg-li" placeholder="https://linkedin.com/company/ticocapitalgroup"/></div>
           </div>
+          <div class="config-card" style="grid-column:1/-1">
+            <h3>🔑 Cambiar Contraseña</h3>
+            <p style="font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">Para cambiar la contraseña de acceso al panel de administración. Debes ingresar tu contraseña actual primero.</p>
+            <div class="fg-row fg-row3">
+              <div class="fg"><label>Contraseña actual</label>
+                <input type="password" id="pw-current" placeholder="••••••••" autocomplete="current-password"/></div>
+              <div class="fg"><label>Nueva contraseña</label>
+                <input type="password" id="pw-new" placeholder="••••••••" autocomplete="new-password"/></div>
+              <div class="fg"><label>Confirmar nueva contraseña</label>
+                <input type="password" id="pw-confirm" placeholder="••••••••" autocomplete="new-password"/></div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-top:4px">
+              <button class="btn btn-outline" id="btn-change-pw">🔑 Cambiar Contraseña</button>
+            </div>
+            <div id="pw-msg" style="margin-top:10px;font-size:13px;min-height:18px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── IMAGES ── -->
+      <div class="section" id="sec-images">
+        <div class="sh">
+          <h2>Imágenes del Sitio</h2>
+          <button class="btn btn-gold" id="btn-save-images">💾 Guardar Imágenes</button>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.6">Pega la URL de cada imagen. Puedes usar imágenes de Unsplash, Google Drive, Cloudinary o cualquier URL pública.</p>
+        <div class="img-cards">
+          <div class="img-card">
+            <h3>Hero Principal</h3>
+            <p>Imagen de fondo en la sección de bienvenida (pantalla principal).</p>
+            <div class="img-preview-box" id="prev-hero-main"><span>Sin imagen</span></div>
+            <div class="fg"><label>URL de la imagen</label>
+              <input type="url" id="img-hero-main" placeholder="https://…" oninput="previewImg('img-hero-main','prev-hero-main')"/>
+            </div>
+          </div>
+          <div class="img-card">
+            <h3>Hero "Quiénes Somos"</h3>
+            <p>Imagen de la sección Sobre Nosotros / About Us.</p>
+            <div class="img-preview-box" id="prev-hero-about"><span>Sin imagen</span></div>
+            <div class="fg"><label>URL de la imagen</label>
+              <input type="url" id="img-hero-about" placeholder="https://…" oninput="previewImg('img-hero-about','prev-hero-about')"/>
+            </div>
+          </div>
+          <div class="img-card">
+            <h3>Imagen Servicios</h3>
+            <p>Imagen de fondo o portada de la sección de Servicios.</p>
+            <div class="img-preview-box" id="prev-hero-services"><span>Sin imagen</span></div>
+            <div class="fg"><label>URL de la imagen</label>
+              <input type="url" id="img-hero-services" placeholder="https://…" oninput="previewImg('img-hero-services','prev-hero-services')"/>
+            </div>
+          </div>
+          <div class="img-card">
+            <h3>Imagen Contacto</h3>
+            <p>Imagen de fondo de la sección de Contacto.</p>
+            <div class="img-preview-box" id="prev-hero-contact"><span>Sin imagen</span></div>
+            <div class="fg"><label>URL de la imagen</label>
+              <input type="url" id="img-hero-contact" placeholder="https://…" oninput="previewImg('img-hero-contact','prev-hero-contact')"/>
+            </div>
+          </div>
+          <div class="img-card">
+            <h3>Logo (URL)</h3>
+            <p>Logo principal que aparece en el navbar y footer del sitio.</p>
+            <div class="img-preview-box" id="prev-logo" style="height:80px"><span>Sin imagen</span></div>
+            <div class="fg"><label>URL del logo</label>
+              <input type="url" id="img-logo" placeholder="https://…" oninput="previewImg('img-logo','prev-logo')"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TEXTS ── -->
+      <div class="section" id="sec-texts">
+        <div class="sh">
+          <h2>Textos del Sitio</h2>
+          <button class="btn btn-gold" id="btn-save-texts">💾 Guardar Textos</button>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.6">Edita los textos principales del sitio. Los cambios se guardan en la base de datos y el sitio los lee automáticamente.</p>
+        <div class="texts-grid">
+          <div class="texts-card">
+            <h3>🏠 Hero Principal</h3>
+            <p>Textos que aparecen en la pantalla de bienvenida.</p>
+            <div class="fg"><label>Título principal (ES)</label>
+              <input type="text" id="txt-hero-title-es" placeholder="BIENVENIDOS A TICO CAPITAL GROUP"/></div>
+            <div class="fg" style="margin-top:12px"><label>Título principal (EN)</label>
+              <input type="text" id="txt-hero-title-en" placeholder="WELCOME TO TICO CAPITAL GROUP"/></div>
+            <div class="fg" style="margin-top:12px"><label>Subtítulo (ES)</label>
+              <textarea id="txt-hero-sub-es" rows="3" placeholder="Te ayudamos a comprar, invertir y generar ingresos…"></textarea></div>
+            <div class="fg" style="margin-top:12px"><label>Subtítulo (EN)</label>
+              <textarea id="txt-hero-sub-en" rows="3" placeholder="We help you buy, invest and generate income…"></textarea></div>
+          </div>
+          <div class="texts-card">
+            <h3>📞 Contacto &amp; CTA</h3>
+            <p>Textos de llamada a la acción y sección de contacto.</p>
+            <div class="fg"><label>Botón CTA principal (ES)</label>
+              <input type="text" id="txt-cta-es" placeholder="ESCRÍBENOS HOY"/></div>
+            <div class="fg" style="margin-top:12px"><label>Botón CTA principal (EN)</label>
+              <input type="text" id="txt-cta-en" placeholder="CONTACT US TODAY"/></div>
+            <div class="fg" style="margin-top:12px"><label>Tagline / Slogan (ES)</label>
+              <input type="text" id="txt-tagline-es" placeholder="TU FUTURO EMPIEZA EN CASA"/></div>
+            <div class="fg" style="margin-top:12px"><label>Tagline / Slogan (EN)</label>
+              <input type="text" id="txt-tagline-en" placeholder="YOUR FUTURE STARTS AT HOME"/></div>
+          </div>
+          <div class="texts-card">
+            <h3>🏢 Sobre Nosotros</h3>
+            <p>Descripción en la sección "Quiénes Somos".</p>
+            <div class="fg"><label>Descripción (ES)</label>
+              <textarea id="txt-about-es" rows="5" placeholder="En Tico Capital Group te ayudamos…"></textarea></div>
+            <div class="fg" style="margin-top:12px"><label>Descripción (EN)</label>
+              <textarea id="txt-about-en" rows="5" placeholder="At Tico Capital Group we help you…"></textarea></div>
+          </div>
+          <div class="texts-card">
+            <h3>🛎️ Servicios</h3>
+            <p>Descripciones cortas de cada servicio.</p>
+            <div class="fg"><label>Compra — Descripción (ES)</label>
+              <textarea id="txt-svc-buy-es" rows="2" placeholder="Encontramos la propiedad ideal para ti…"></textarea></div>
+            <div class="fg" style="margin-top:10px"><label>Venta — Descripción (ES)</label>
+              <textarea id="txt-svc-sell-es" rows="2" placeholder="Vendemos tu propiedad al mejor precio…"></textarea></div>
+            <div class="fg" style="margin-top:10px"><label>Administración — Descripción (ES)</label>
+              <textarea id="txt-svc-admin-es" rows="2" placeholder="Nos encargamos de todo por usted…"></textarea></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── POLICIES ── -->
+      <div class="section" id="sec-policies">
+        <div class="sh">
+          <h2>Políticas del Sitio</h2>
+          <button class="btn btn-gold" id="btn-save-policies">💾 Guardar Políticas</button>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.6">Administra los textos legales del sitio. Se guardan en la base de datos y se muestran cuando el usuario los solicita.</p>
+        <div class="pol-card">
+          <h3>🔒 Política de Privacidad</h3>
+          <p>Texto completo de la política de privacidad de datos. Puedes usar formato de texto plano.</p>
+          <div class="fg">
+            <textarea id="pol-privacy" rows="12" placeholder="POLÍTICA DE PRIVACIDAD&#10;&#10;En Tico Capital Group, respetamos tu privacidad y nos comprometemos a proteger tus datos personales…"></textarea>
+          </div>
+          <div class="pol-last" id="pol-privacy-saved"></div>
+        </div>
+        <div class="pol-card">
+          <h3>📋 Términos y Condiciones</h3>
+          <p>Texto completo de los términos de uso del sitio web y servicios.</p>
+          <div class="fg">
+            <textarea id="pol-terms" rows="12" placeholder="TÉRMINOS Y CONDICIONES&#10;&#10;Al usar este sitio web, aceptas los siguientes términos y condiciones…"></textarea>
+          </div>
+          <div class="pol-last" id="pol-terms-saved"></div>
+        </div>
+        <div class="pol-card">
+          <h3>🍪 Aviso de Cookies</h3>
+          <p>Texto del banner de cookies que aparece al ingresar al sitio.</p>
+          <div class="fg">
+            <textarea id="pol-cookies" rows="5" placeholder="Usamos cookies para mejorar tu experiencia de navegación…"></textarea>
+          </div>
+          <div class="pol-last" id="pol-cookies-saved"></div>
         </div>
       </div>
 
@@ -734,7 +930,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import{getFirestore,collection,onSnapshot,addDoc,updateDoc,deleteDoc,doc,serverTimestamp,setDoc,getDoc}
   from'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import{getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged}
+import{getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged,
+  updatePassword,reauthenticateWithCredential,EmailAuthProvider}
   from'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 
 // ── Firebase ─────────────────────────────────────────────────────
@@ -790,7 +987,8 @@ $('logout-btn').addEventListener('click',async()=>{subs.forEach(u=>u());subs=[];
 
 // ── Navigation ────────────────────────────────────────────────────
 const titles={dashboard:'Dashboard',properties:'Propiedades',leads:'Leads / Consultas',
-  config:'Configuración del Sitio',testimonials:'Testimonios',blog:'Blog / Noticias'};
+  config:'Configuración',testimonials:'Testimonios',blog:'Blog / Noticias',
+  images:'Imágenes del Sitio',texts:'Textos del Sitio',policies:'Políticas'};
 
 document.querySelectorAll('.sb-item').forEach(item=>{
   item.addEventListener('click',()=>{
@@ -802,6 +1000,9 @@ document.querySelectorAll('.sb-item').forEach(item=>{
     $('topbar-title').textContent=titles[sec]||sec;
     closeSidebar();
     if(sec==='config') loadConfig();
+    if(sec==='images') loadImages();
+    if(sec==='texts') loadTexts();
+    if(sec==='policies') loadPolicies();
   });
 });
 
@@ -1402,6 +1603,126 @@ async function saveBlog(){
   }catch(e){console.error(e);toast('Error al guardar','err');}
   finally{btn.disabled=false;btn.textContent=$('b-docid').value?'Guardar Cambios':'Guardar Artículo';}
 }
+
+// ── IMAGES ────────────────────────────────────────────────────────
+const IMG_FIELDS=['hero-main','hero-about','hero-services','hero-contact','logo'];
+window.previewImg=function(inputId,previewId){
+  const url=document.getElementById(inputId).value.trim();
+  const box=document.getElementById(previewId);
+  if(!url){box.innerHTML='<span>Sin imagen</span>';return;}
+  box.innerHTML=`<img src="${esc(url)}" alt="preview" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='<span style=color:var(--red)>URL inválida</span>'">`;
+};
+async function loadImages(){
+  try{
+    const snap=await getDoc(doc(db,'config','images'));
+    if(snap.exists()){
+      const d=snap.data();
+      IMG_FIELDS.forEach(k=>{
+        const val=d[k]||'';
+        const inp=document.getElementById('img-'+k);
+        if(inp){inp.value=val;if(val)window.previewImg('img-'+k,'prev-'+k);}
+      });
+    }
+  }catch(e){console.error(e);toast('Error al cargar imágenes','err');}
+}
+$('btn-save-images').addEventListener('click',async()=>{
+  const btn=$('btn-save-images');btn.disabled=true;btn.textContent='Guardando…';
+  const data={updatedAt:serverTimestamp()};
+  IMG_FIELDS.forEach(k=>{data[k]=document.getElementById('img-'+k).value.trim();});
+  try{
+    await setDoc(doc(db,'config','images'),data,{merge:true});
+    toast('✓ Imágenes guardadas','ok');
+  }catch(e){console.error(e);toast('Error al guardar','err');}
+  finally{btn.disabled=false;btn.textContent='💾 Guardar Imágenes';}
+});
+
+// ── TEXTS ─────────────────────────────────────────────────────────
+const TXT_FIELDS=['hero-title-es','hero-title-en','hero-sub-es','hero-sub-en',
+  'cta-es','cta-en','tagline-es','tagline-en','about-es','about-en',
+  'svc-buy-es','svc-sell-es','svc-admin-es'];
+async function loadTexts(){
+  try{
+    const snap=await getDoc(doc(db,'config','texts'));
+    if(snap.exists()){
+      const d=snap.data();
+      TXT_FIELDS.forEach(k=>{
+        const el=document.getElementById('txt-'+k);
+        if(el) el.value=d[k]||'';
+      });
+    }
+  }catch(e){console.error(e);toast('Error al cargar textos','err');}
+}
+$('btn-save-texts').addEventListener('click',async()=>{
+  const btn=$('btn-save-texts');btn.disabled=true;btn.textContent='Guardando…';
+  const data={updatedAt:serverTimestamp()};
+  TXT_FIELDS.forEach(k=>{data[k]=document.getElementById('txt-'+k).value.trim();});
+  try{
+    await setDoc(doc(db,'config','texts'),data,{merge:true});
+    toast('✓ Textos guardados','ok');
+  }catch(e){console.error(e);toast('Error al guardar','err');}
+  finally{btn.disabled=false;btn.textContent='💾 Guardar Textos';}
+});
+
+// ── POLICIES ──────────────────────────────────────────────────────
+async function loadPolicies(){
+  try{
+    const snap=await getDoc(doc(db,'config','policies'));
+    if(snap.exists()){
+      const d=snap.data();
+      if(d.privacy) $('pol-privacy').value=d.privacy;
+      if(d.terms)   $('pol-terms').value=d.terms;
+      if(d.cookies) $('pol-cookies').value=d.cookies;
+      const fmt=ts=>{if(!ts)return'';const dt=ts.toDate?ts.toDate():new Date(ts);return'Último guardado: '+dt.toLocaleDateString('es-CR',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});};
+      $('pol-privacy-saved').textContent=fmt(d.updatedAt);
+      $('pol-terms-saved').textContent=fmt(d.updatedAt);
+      $('pol-cookies-saved').textContent=fmt(d.updatedAt);
+    }
+  }catch(e){console.error(e);toast('Error al cargar políticas','err');}
+}
+$('btn-save-policies').addEventListener('click',async()=>{
+  const btn=$('btn-save-policies');btn.disabled=true;btn.textContent='Guardando…';
+  try{
+    await setDoc(doc(db,'config','policies'),{
+      privacy:$('pol-privacy').value.trim(),
+      terms:$('pol-terms').value.trim(),
+      cookies:$('pol-cookies').value.trim(),
+      updatedAt:serverTimestamp()
+    },{merge:true});
+    toast('✓ Políticas guardadas','ok');
+    loadPolicies();
+  }catch(e){console.error(e);toast('Error al guardar','err');}
+  finally{btn.disabled=false;btn.textContent='💾 Guardar Políticas';}
+});
+
+// ── CHANGE PASSWORD ───────────────────────────────────────────────
+$('btn-change-pw').addEventListener('click',async()=>{
+  const cur=$('pw-current').value;
+  const nw=$('pw-new').value;
+  const cf=$('pw-confirm').value;
+  const msgEl=$('pw-msg');
+  msgEl.style.color='var(--red)';
+  if(!cur||!nw||!cf){msgEl.textContent='Completa los tres campos.';return;}
+  if(nw.length<6){msgEl.textContent='La nueva contraseña debe tener al menos 6 caracteres.';return;}
+  if(nw!==cf){msgEl.textContent='Las contraseñas nuevas no coinciden.';return;}
+  const btn=$('btn-change-pw');btn.disabled=true;btn.textContent='Actualizando…';
+  try{
+    const user=auth.currentUser;
+    const cred=EmailAuthProvider.credential(user.email,cur);
+    await reauthenticateWithCredential(user,cred);
+    await updatePassword(user,nw);
+    msgEl.style.color='var(--green)';
+    msgEl.textContent='✓ Contraseña actualizada correctamente.';
+    $('pw-current').value='';$('pw-new').value='';$('pw-confirm').value='';
+    setTimeout(()=>{msgEl.textContent='';},5000);
+  }catch(err){
+    const errs={'auth/wrong-password':'Contraseña actual incorrecta.',
+      'auth/invalid-credential':'Contraseña actual incorrecta.',
+      'auth/too-many-requests':'Demasiados intentos. Espera un momento.',
+      'auth/weak-password':'La contraseña nueva es muy débil (mín. 6 caracteres).'};
+    msgEl.textContent=errs[err.code]||'Error: '+err.message;
+  }
+  finally{btn.disabled=false;btn.textContent='🔑 Cambiar Contraseña';}
+});
 
 // ── TOAST ─────────────────────────────────────────────────────────
 function toast(msg,type='ok'){
