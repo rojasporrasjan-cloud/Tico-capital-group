@@ -612,14 +612,8 @@
         finish();
       });
 
-      // Hash navigation detection
-      function checkHash() {
-        if (window.location.hash === '#propiedades') {
-          setTimeout(show, 120);
-        }
-      }
-
-      window.addEventListener('hashchange', checkHash);
+      // Expose globally so the React bundle can call it directly
+      window._showBuildIntro = show;
 
       // Keyboard: Space or Enter also advances
       document.addEventListener('keydown', function(e) {
