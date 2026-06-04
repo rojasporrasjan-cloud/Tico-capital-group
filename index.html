@@ -303,122 +303,91 @@
 
     <!-- USD/CRC toggle removed -->
 
-    <!-- ══ CLICK TO BUILD — Fullscreen Immersive Intro ══════════════════════ -->
+    <!-- ══ SCROLL TO BUILD — Fullscreen Immersive Intro ════════════════════ -->
     <style>
-      /* ── Overlay ── */
       #ctb-overlay {
         position: fixed; inset: 0; z-index: 10100;
-        background: #011110; cursor: pointer;
+        background: #011110; cursor: ns-resize;
         display: none; overflow: hidden;
         font-family: 'Inter', sans-serif;
       }
-      #ctb-overlay.ctb-active  { display: block; }
+      #ctb-overlay.ctb-active { display: block; }
       #ctb-overlay.ctb-closing {
-        animation: ctb-fade-out 0.9s cubic-bezier(.4,0,.2,1) forwards;
+        animation: ctb-out .9s cubic-bezier(.4,0,.2,1) forwards;
         pointer-events: none;
       }
-      @keyframes ctb-fade-out {
-        0%   { opacity:1; transform:scale(1); }
-        100% { opacity:0; transform:scale(1.04); }
+      @keyframes ctb-out {
+        to { opacity:0; transform:scale(1.04); }
       }
 
-      /* ── Video ── */
       #ctb-video {
         position: absolute; inset: 0;
-        width: 100%; height: 100%;
-        object-fit: cover;
-        transition: opacity .15s;
+        width: 100%; height: 100%; object-fit: cover;
       }
-
-      /* ── Gradients ── */
-      #ctb-grad-bottom {
-        position: absolute; inset: 0;
+      #ctb-grad {
+        position: absolute; inset: 0; pointer-events: none;
         background: linear-gradient(to top,
-          rgba(1,17,16,.92) 0%,
-          rgba(1,17,16,.45) 35%,
-          rgba(1,17,16,.15) 65%,
-          rgba(1,17,16,.3)  100%);
-        pointer-events: none;
+          rgba(1,17,16,.95) 0%, rgba(1,17,16,.4) 40%,
+          rgba(1,17,16,.1) 65%, rgba(1,17,16,.35) 100%);
       }
 
-      /* ── Center hint (first state) ── */
+      /* ── Scroll hint (center) ── */
       #ctb-hint {
-        position: absolute; top: 50%; left: 50%;
-        transform: translate(-50%,-50%);
+        position: absolute; bottom: 38%; left: 50%;
+        transform: translateX(-50%);
         text-align: center; pointer-events: none;
-        transition: opacity .5s ease;
+        transition: opacity .6s ease;
       }
-      #ctb-hint .ctb-hint-icon {
-        font-size: 36px; margin-bottom: 16px;
-        animation: ctb-pulse-icon 2s ease-in-out infinite;
-      }
-      #ctb-hint .ctb-hint-label {
+      #ctb-hint-label {
         font-family: 'Cormorant Garamond', Georgia, serif;
-        font-size: clamp(18px, 3vw, 28px);
-        font-weight: 400; letter-spacing: .12em;
-        color: rgba(240,237,232,.55);
-        text-transform: uppercase;
+        font-size: clamp(16px, 2.5vw, 24px);
+        font-weight: 400; letter-spacing: .18em;
+        color: rgba(240,237,232,.5); text-transform: uppercase;
+        margin-bottom: 18px;
       }
-      @keyframes ctb-pulse-icon {
-        0%,100% { opacity:.4; transform:scale(1); }
-        50%      { opacity:.9; transform:scale(1.1); }
+      #ctb-arrow {
+        width: 28px; height: 28px; margin: 0 auto;
+        border-right: 1.5px solid rgba(201,169,110,.6);
+        border-bottom: 1.5px solid rgba(201,169,110,.6);
+        transform: rotate(45deg);
+        animation: ctb-bounce 1.4s ease-in-out infinite;
+      }
+      @keyframes ctb-bounce {
+        0%,100% { transform: rotate(45deg) translateY(0); opacity:.5; }
+        50%      { transform: rotate(45deg) translateY(8px); opacity:1; }
       }
       #ctb-hint.ctb-gone { opacity: 0; }
 
-      /* ── Bottom content ── */
+      /* ── Bottom UI ── */
       #ctb-bottom {
         position: absolute; bottom: 0; left: 0; right: 0;
         padding: clamp(24px,5vw,52px) clamp(24px,6vw,64px);
         pointer-events: none;
       }
-      #ctb-message {
+      #ctb-msg {
         font-family: 'Cormorant Garamond', Georgia, serif;
-        font-size: clamp(22px, 4vw, 48px);
+        font-size: clamp(24px, 4vw, 50px);
         font-weight: 400; letter-spacing: .04em;
         color: #f0ede8; line-height: 1.2;
-        margin-bottom: 22px;
-        min-height: 1.3em;
-        transition: opacity .25s ease;
+        margin-bottom: 24px; min-height: 1.3em;
+        opacity: 1; transition: opacity .3s ease;
       }
-      #ctb-message.ctb-msg-fade { opacity: 0; }
-
-      /* ── Progress bar ── */
+      #ctb-msg.fade { opacity: 0; }
       #ctb-bar-wrap {
-        height: 1.5px;
-        background: rgba(255,255,255,.12);
-        border-radius: 2px; overflow: hidden;
-        margin-bottom: 14px;
+        height: 1.5px; background: rgba(255,255,255,.1);
+        overflow: hidden; margin-bottom: 0;
       }
       #ctb-bar {
         height: 100%; width: 0%;
-        background: linear-gradient(90deg, rgba(184,137,58,.7), #c9a96e);
-        transition: width .45s cubic-bezier(.4,0,.2,1);
-        border-radius: 2px;
+        background: linear-gradient(90deg, rgba(184,137,58,.6), #c9a96e);
+        transition: width .08s linear;
       }
 
-      /* ── Step counter ── */
-      #ctb-steps {
-        font-size: 10px; letter-spacing: .22em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,.25);
-        display: flex; align-items: center; gap: 10px;
-      }
-      #ctb-dots { display: flex; gap: 6px; }
-      .ctb-dot {
-        width: 4px; height: 4px; border-radius: 50%;
-        background: rgba(255,255,255,.18);
-        transition: background .3s, transform .3s;
-      }
-      .ctb-dot.ctb-done {
-        background: #c9a96e;
-        transform: scale(1.25);
-      }
-
-      /* ── Skip button ── */
+      /* ── Skip ── */
       #ctb-skip {
         position: absolute; top: 28px; right: 28px;
         background: rgba(255,255,255,.07);
-        border: 1px solid rgba(255,255,255,.14);
+        border: 1px solid rgba(255,255,255,.13);
         color: rgba(255,255,255,.38);
         font-family: 'Inter', sans-serif;
         font-size: 10px; font-weight: 600;
@@ -427,60 +396,40 @@
         cursor: pointer; pointer-events: all;
         transition: all .2s;
       }
-      #ctb-skip:hover {
-        background: rgba(255,255,255,.13);
-        color: rgba(255,255,255,.65);
-        border-color: rgba(255,255,255,.28);
-      }
+      #ctb-skip:hover { background:rgba(255,255,255,.13); color:rgba(255,255,255,.65); }
 
-      /* ── Click ripple ── */
-      .ctb-ripple {
-        position: absolute; border-radius: 50%;
-        width: 80px; height: 80px;
-        background: rgba(201,169,110,.22);
-        transform: translate(-50%,-50%) scale(0);
-        animation: ctb-ripple-anim .6s ease-out forwards;
-        pointer-events: none;
-      }
-      @keyframes ctb-ripple-anim {
-        to { transform: translate(-50%,-50%) scale(4); opacity: 0; }
-      }
-
-      /* ── Mobile ── */
-      @media (max-width: 500px) {
-        #ctb-skip { top:18px; right:18px; }
-        #ctb-bottom { padding: 24px 20px; }
+      @media(max-width:500px) {
+        #ctb-skip { top:16px; right:16px; }
+        #ctb-bottom { padding: 24px 22px; }
       }
     </style>
 
-    <!-- Overlay HTML -->
-    <div id="ctb-overlay" aria-label="Experiencia interactiva" role="region">
+    <div id="ctb-overlay" role="region" aria-label="Construí tu futuro">
       <video id="ctb-video" src="/hero.mp4" muted playsinline preload="auto"></video>
-      <div id="ctb-grad-bottom"></div>
+      <div id="ctb-grad"></div>
       <div id="ctb-hint">
-        <div class="ctb-hint-icon">✦</div>
-        <div class="ctb-hint-label">Haz clic para construir</div>
+        <div id="ctb-hint-label">Scroll para construir</div>
+        <div id="ctb-arrow"></div>
       </div>
       <div id="ctb-bottom">
-        <div id="ctb-message"></div>
+        <div id="ctb-msg"></div>
         <div id="ctb-bar-wrap"><div id="ctb-bar"></div></div>
-        <div id="ctb-steps">
-          <div id="ctb-dots"></div>
-        </div>
       </div>
       <button id="ctb-skip">Skip →</button>
     </div>
 
     <script>
     (function() {
-      var STEPS = 8;
-      var currentStep = 0;
+      var TOTAL = 2800;   // total px of scroll needed to complete
+      var accumulated = 0;
+      var progress = 0;
       var isActive = false;
       var duration = 0;
-      var seeking = false;
+      var finished = false;
+      var lastMsg = -1;
+      var touchLastY = 0;
 
-      var MESSAGES = [
-        '',
+      var MSGS = [
         'Preparando el terreno…',
         'Cimentando las bases…',
         'Levantando las paredes…',
@@ -488,158 +437,125 @@
         'Instalaciones y acabados…',
         'Los \xFAltimos detalles…',
         'Las puertas abiertas para ti…',
-        'Tu propiedad te espera ✶'
+        'Tu propiedad te espera ❖'
       ];
 
-      var overlay  = document.getElementById('ctb-overlay');
-      var video    = document.getElementById('ctb-video');
-      var bar      = document.getElementById('ctb-bar');
-      var message  = document.getElementById('ctb-message');
-      var hint     = document.getElementById('ctb-hint');
-      var dotsEl   = document.getElementById('ctb-dots');
-      var skipBtn  = document.getElementById('ctb-skip');
+      var ov    = document.getElementById('ctb-overlay');
+      var vid   = document.getElementById('ctb-video');
+      var bar   = document.getElementById('ctb-bar');
+      var msg   = document.getElementById('ctb-msg');
+      var hint  = document.getElementById('ctb-hint');
+      var skip  = document.getElementById('ctb-skip');
 
-      // Build dots
-      for (var i = 0; i < STEPS; i++) {
-        var d = document.createElement('div');
-        d.className = 'ctb-dot';
-        d.id = 'ctb-dot-' + i;
-        dotsEl.appendChild(d);
+      function setMsg(txt) {
+        msg.classList.add('fade');
+        var t = txt;
+        setTimeout(function() { msg.textContent = t; msg.classList.remove('fade'); }, 280);
       }
 
-      function updateDots() {
-        for (var i = 0; i < STEPS; i++) {
-          var el = document.getElementById('ctb-dot-' + i);
-          if (el) el.className = 'ctb-dot' + (i < currentStep ? ' ctb-done' : '');
-        }
-      }
+      function onScroll(delta) {
+        if (!isActive || finished || delta <= 0) return;
 
-      function setMessage(txt) {
-        message.classList.add('ctb-msg-fade');
-        var _txt = txt;
-        setTimeout(function() {
-          message.textContent = _txt;
-          message.classList.remove('ctb-msg-fade');
-        }, 220);
-      }
+        // Hide hint after first scroll
+        if (accumulated === 0) hint.classList.add('ctb-gone');
 
-      function spawnRipple(x, y) {
-        var r = document.createElement('div');
-        r.className = 'ctb-ripple';
-        r.style.left = x + 'px';
-        r.style.top  = y + 'px';
-        overlay.appendChild(r);
-        setTimeout(function() { if (r.parentNode) r.parentNode.removeChild(r); }, 700);
-      }
+        accumulated = Math.min(accumulated + delta, TOTAL);
+        progress = accumulated / TOTAL;
 
-      function advance(x, y) {
-        if (!isActive || seeking) return;
-        if (currentStep === 0) {
-          hint.classList.add('ctb-gone');
-        }
-        currentStep++;
-        spawnRipple(x, y);
-
-        var progress = currentStep / STEPS;
-        bar.style.width = (progress * 100) + '%';
-        setMessage(MESSAGES[currentStep] || MESSAGES[MESSAGES.length - 1]);
-        updateDots();
-
-        // Seek video
+        // Scrub video
         if (duration > 0) {
-          seeking = true;
-          video.currentTime = progress * duration;
-          setTimeout(function() { seeking = false; }, 300);
+          vid.currentTime = progress * duration;
         }
 
-        if (currentStep >= STEPS) {
+        // Progress bar — no transition for real-time feel
+        bar.style.width = (progress * 100) + '%';
+
+        // Update message at 8 milestones
+        var step = Math.min(Math.floor(progress * MSGS.length), MSGS.length - 1);
+        if (step !== lastMsg) {
+          lastMsg = step;
+          setMsg(MSGS[step]);
+        }
+
+        // Done
+        if (progress >= 1) {
+          finished = true;
           isActive = false;
-          setTimeout(finish, 1400);
+          setTimeout(finish, 1200);
         }
       }
 
       function finish() {
-        overlay.classList.add('ctb-closing');
+        ov.classList.add('ctb-closing');
+        document.body.style.overflow = '';
         setTimeout(function() {
-          overlay.classList.remove('ctb-active', 'ctb-closing');
+          ov.classList.remove('ctb-active', 'ctb-closing');
         }, 950);
       }
 
       function show() {
-        // Reset
-        currentStep = 0;
-        isActive = true;
-        seeking = false;
+        accumulated = 0; progress = 0; finished = false; lastMsg = -1;
         bar.style.width = '0%';
-        message.textContent = '';
-        message.classList.remove('ctb-msg-fade');
+        msg.textContent = '';
+        msg.classList.remove('fade');
         hint.classList.remove('ctb-gone');
-        updateDots();
 
-        // Reset video
-        video.currentTime = 0;
-        duration = video.duration || 0;
+        vid.currentTime = 0;
+        duration = vid.duration || 0;
         if (!duration) {
-          video.addEventListener('loadedmetadata', function onMeta() {
-            duration = video.duration;
-            video.removeEventListener('loadedmetadata', onMeta);
+          vid.addEventListener('loadedmetadata', function h() {
+            duration = vid.duration; vid.removeEventListener('loadedmetadata', h);
           });
         }
 
-        overlay.classList.remove('ctb-closing');
-        overlay.classList.add('ctb-active');
+        ov.classList.remove('ctb-closing');
+        ov.classList.add('ctb-active');
+        document.body.style.overflow = 'hidden';
+        isActive = true;
       }
 
-      // Overlay click
-      overlay.addEventListener('click', function(e) {
-        if (e.target === skipBtn || skipBtn.contains(e.target)) return;
-        var rect = overlay.getBoundingClientRect();
-        advance(e.clientX - rect.left, e.clientY - rect.top);
-      });
-
-      // Touch support
-      overlay.addEventListener('touchend', function(e) {
-        if (e.target === skipBtn || skipBtn.contains(e.target)) return;
-        var t = e.changedTouches[0];
-        var rect = overlay.getBoundingClientRect();
-        advance(t.clientX - rect.left, t.clientY - rect.top);
+      // ── Wheel (desktop) ──
+      ov.addEventListener('wheel', function(e) {
         e.preventDefault();
+        onScroll(Math.abs(e.deltaY));
       }, { passive: false });
 
-      skipBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        isActive = false;
-        finish();
+      // ── Touch (mobile swipe up) ──
+      ov.addEventListener('touchstart', function(e) {
+        touchLastY = e.touches[0].clientY;
+      }, { passive: true });
+      ov.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        var dy = touchLastY - e.touches[0].clientY; // positive = swipe up
+        touchLastY = e.touches[0].clientY;
+        onScroll(dy * 2.5); // amplify touch
+      }, { passive: false });
+
+      // ── Skip ──
+      skip.addEventListener('click', function(e) {
+        e.stopPropagation(); isActive = false; finish();
       });
 
-      // ── Trigger 1: nav click (React bundle calls this directly)
+      // ── Keyboard ──
+      document.addEventListener('keydown', function(e) {
+        if (!isActive) return;
+        if (e.code === 'ArrowDown' || e.code === 'Space') { onScroll(200); e.preventDefault(); }
+        if (e.code === 'Escape') { isActive = false; finish(); }
+      });
+
+      // ── Triggers ──
       window._showBuildIntro = show;
 
-      // ── Trigger 2: direct URL load / reload on #propiedades
       window.addEventListener('load', function() {
-        if (window.location.hash === '#propiedades') {
-          setTimeout(show, 400); // wait for React to render first
-        }
+        if (window.location.hash === '#propiedades') setTimeout(show, 400);
       });
-
-      // ── Trigger 3: hashchange (back/forward browser buttons)
       window.addEventListener('hashchange', function() {
         if (window.location.hash === '#propiedades') show();
       });
 
-      // Keyboard: Space or Enter also advances
-      document.addEventListener('keydown', function(e) {
-        if (!isActive) return;
-        if (e.code === 'Space' || e.code === 'Enter') {
-          advance(window.innerWidth / 2, window.innerHeight / 2);
-          e.preventDefault();
-        }
-        if (e.code === 'Escape') { isActive = false; finish(); }
-      });
-
     })();
     </script>
-    <!-- ══ /CLICK TO BUILD ════════════════════════════════════════════════════ -->
+    <!-- ══ /SCROLL TO BUILD ═══════════════════════════════════════════════════ -->
 
     <!-- ── Floating WhatsApp Button ──────────────────────────────── -->
     <style>
