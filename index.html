@@ -462,6 +462,11 @@
         accumulated = Math.min(accumulated + delta, TOTAL);
         progress = accumulated / TOTAL;
 
+        // Refresh duration every tick until we have it
+        if (!duration || !isFinite(duration)) {
+          duration = vid.duration && isFinite(vid.duration) ? vid.duration : 0;
+        }
+
         // Scrub video
         if (duration > 0) {
           vid.currentTime = progress * duration;
