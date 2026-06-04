@@ -303,277 +303,77 @@
 
     <!-- USD/CRC toggle removed -->
 
-    <!-- ══ SCROLL TO BUILD — Fullscreen Immersive Intro ════════════════════ -->
-    <style>
-      #ctb-overlay {
-        position: fixed; inset: 0; z-index: 10100;
-        background: #011110; cursor: ns-resize;
-        display: none; overflow: hidden;
-        font-family: 'Inter', sans-serif;
-      }
-      #ctb-overlay.ctb-active { display: block; }
-      #ctb-overlay.ctb-closing {
-        animation: ctb-out .9s cubic-bezier(.4,0,.2,1) forwards;
-        pointer-events: none;
-      }
-      @keyframes ctb-out {
-        to { opacity:0; transform:scale(1.04); }
-      }
-
-      #ctb-video {
-        position: absolute; inset: 0;
-        width: 100%; height: 100%; object-fit: cover;
-      }
-      #ctb-grad {
-        position: absolute; inset: 0; pointer-events: none;
-        background: linear-gradient(to top,
-          rgba(1,17,16,.95) 0%, rgba(1,17,16,.4) 40%,
-          rgba(1,17,16,.1) 65%, rgba(1,17,16,.35) 100%);
-      }
-
-      /* ── Scroll hint (center) ── */
-      #ctb-hint {
-        position: absolute; bottom: 38%; left: 50%;
-        transform: translateX(-50%);
-        text-align: center; pointer-events: none;
-        transition: opacity .6s ease;
-      }
-      #ctb-hint-label {
-        font-family: 'Cormorant Garamond', Georgia, serif;
-        font-size: clamp(16px, 2.5vw, 24px);
-        font-weight: 400; letter-spacing: .18em;
-        color: rgba(240,237,232,.5); text-transform: uppercase;
-        margin-bottom: 18px;
-      }
-      #ctb-arrow {
-        width: 28px; height: 28px; margin: 0 auto;
-        border-right: 1.5px solid rgba(201,169,110,.6);
-        border-bottom: 1.5px solid rgba(201,169,110,.6);
-        transform: rotate(45deg);
-        animation: ctb-bounce 1.4s ease-in-out infinite;
-      }
-      @keyframes ctb-bounce {
-        0%,100% { transform: rotate(45deg) translateY(0); opacity:.5; }
-        50%      { transform: rotate(45deg) translateY(8px); opacity:1; }
-      }
-      #ctb-hint.ctb-gone { opacity: 0; }
-
-      /* ── Bottom UI ── */
-      #ctb-bottom {
-        position: absolute; bottom: 0; left: 0; right: 0;
-        padding: clamp(24px,5vw,52px) clamp(24px,6vw,64px);
-        pointer-events: none;
-      }
-      #ctb-msg {
-        font-family: 'Cormorant Garamond', Georgia, serif;
-        font-size: clamp(24px, 4vw, 50px);
-        font-weight: 400; letter-spacing: .04em;
-        color: #f0ede8; line-height: 1.2;
-        margin-bottom: 24px; min-height: 1.3em;
-        opacity: 1; transition: opacity .3s ease;
-      }
-      #ctb-msg.fade { opacity: 0; }
-      #ctb-bar-wrap {
-        height: 1.5px; background: rgba(255,255,255,.1);
-        overflow: hidden; margin-bottom: 0;
-      }
-      #ctb-bar {
-        height: 100%; width: 0%;
-        background: linear-gradient(90deg, rgba(184,137,58,.6), #c9a96e);
-        transition: width .08s linear;
-      }
-
-      /* ── Skip ── */
-      #ctb-skip {
-        position: absolute; top: 28px; right: 28px;
-        background: rgba(255,255,255,.07);
-        border: 1px solid rgba(255,255,255,.13);
-        color: rgba(255,255,255,.38);
-        font-family: 'Inter', sans-serif;
-        font-size: 10px; font-weight: 600;
-        letter-spacing: .16em; text-transform: uppercase;
-        padding: 9px 20px; border-radius: 4px;
-        cursor: pointer; pointer-events: all;
-        transition: all .2s;
-      }
-      #ctb-skip:hover { background:rgba(255,255,255,.13); color:rgba(255,255,255,.65); }
-
-      @media(max-width:500px) {
-        #ctb-skip { top:16px; right:16px; }
-        #ctb-bottom { padding: 24px 22px; }
-      }
-    </style>
-
-    <div id="ctb-overlay" role="region" aria-label="Construí tu futuro">
-      <video id="ctb-video" src="/hero.mp4" muted playsinline preload="auto"></video>
-      <div id="ctb-grad"></div>
-      <div id="ctb-hint">
-        <div id="ctb-hint-label">Scroll para construir</div>
-        <div id="ctb-arrow"></div>
-      </div>
-      <div id="ctb-bottom">
-        <div id="ctb-msg"></div>
-        <div id="ctb-bar-wrap"><div id="ctb-bar"></div></div>
-      </div>
-      <button id="ctb-skip">Skip →</button>
-    </div>
-
+    <!-- ══ Hero Video Polish (slower + smooth loop) ════════════════════════ -->
     <script>
     (function() {
-      var TOTAL = 12000;  // px of scroll to complete (more = finer frames per scroll)
-      var accumulated = 0;
-      var progress = 0;
-      var isActive = false;
-      var duration = 0;
-      var finished = false;
-      var lastMsg = -1;
-      var touchLastY = 0;
-      var rafPending = false;
-      var pendingTime = -1;
+      // Wait for the properties page video to render, then enhance it
+      var _v = null;
 
-      var MSGS = [
-        'Preparando el terreno…',
-        'Cimentando las bases…',
-        'Levantando las paredes…',
-        'Techos y estructura…',
-        'Instalaciones y acabados…',
-        'Los \xFAltimos detalles…',
-        'Las puertas abiertas para ti…',
-        'Tu propiedad te espera ❖'
-      ];
+      function initVideo(v) {
+        if (v._polished) return;
+        v._polished = true;
 
-      var ov    = document.getElementById('ctb-overlay');
-      var vid   = document.getElementById('ctb-video');
-      var bar   = document.getElementById('ctb-bar');
-      var msg   = document.getElementById('ctb-msg');
-      var hint  = document.getElementById('ctb-hint');
-      var skip  = document.getElementById('ctb-skip');
+        // ── 1. Slower playback ──
+        v.playbackRate = 0.65;
+        v.addEventListener('play', function() { v.playbackRate = 0.65; });
 
-      function setMsg(txt) {
-        msg.classList.add('fade');
-        var t = txt;
-        setTimeout(function() { msg.textContent = t; msg.classList.remove('fade'); }, 280);
-      }
+        // ── 2. Fade to black at end, fade back on loop ──
+        var fade = document.createElement('div');
+        fade.style.cssText = [
+          'position:absolute','inset:0',
+          'background:#011110',
+          'opacity:0',
+          'pointer-events:none',
+          'z-index:3',
+          'transition:opacity 1.8s ease'
+        ].join(';');
+        v.parentNode.appendChild(fade);
 
-      function onScroll(delta) {
-        if (!isActive || finished || delta <= 0) return;
+        var fadingOut = false;
 
-        // Hide hint after first scroll
-        if (accumulated === 0) hint.classList.add('ctb-gone');
+        v.addEventListener('timeupdate', function() {
+          if (!v.duration || !isFinite(v.duration)) return;
+          var remaining = v.duration - v.currentTime;
 
-        accumulated = Math.min(accumulated + delta, TOTAL);
-        progress = accumulated / TOTAL;
-
-        // Refresh duration every tick until we have it
-        if (!duration || !isFinite(duration)) {
-          duration = vid.duration && isFinite(vid.duration) ? vid.duration : 0;
-        }
-
-        // Scrub video — throttled to one seek per animation frame (60fps max)
-        if (duration > 0) {
-          pendingTime = progress * duration;
-          if (!rafPending) {
-            rafPending = true;
-            requestAnimationFrame(function() {
-              if (pendingTime >= 0) vid.currentTime = pendingTime;
-              rafPending = false;
-            });
+          if (remaining < 2.5 && !fadingOut) {
+            // Near end → fade to black
+            fade.style.opacity = String(Math.min(1, (2.5 - remaining) / 2.2).toFixed(3));
+          } else if (remaining >= 2.5) {
+            // Past the fade zone → reset
+            fadingOut = false;
           }
-        }
+        });
 
-        // Progress bar — no transition for real-time feel
-        bar.style.width = (progress * 100) + '%';
-
-        // Update message at 8 milestones
-        var step = Math.min(Math.floor(progress * MSGS.length), MSGS.length - 1);
-        if (step !== lastMsg) {
-          lastMsg = step;
-          setMsg(MSGS[step]);
-        }
-
-        // Done
-        if (progress >= 1) {
-          finished = true;
-          isActive = false;
-          setTimeout(finish, 1200);
-        }
+        // When video loops back to start → quickly fade back out
+        v.addEventListener('seeked', function() {
+          if (v.currentTime < 0.5) {
+            fadingOut = true;
+            fade.style.transition = 'opacity 0s';
+            fade.style.opacity = '1';
+            setTimeout(function() {
+              fade.style.transition = 'opacity 1.2s ease';
+              fade.style.opacity = '0';
+              setTimeout(function() { fadingOut = false; }, 1400);
+            }, 80);
+          }
+        });
       }
 
-      function finish() {
-        ov.classList.add('ctb-closing');
-        document.body.style.overflow = '';
-        setTimeout(function() {
-          ov.classList.remove('ctb-active', 'ctb-closing');
-        }, 950);
-      }
-
-      function show() {
-        accumulated = 0; progress = 0; finished = false; lastMsg = -1;
-        bar.style.width = '0%';
-        msg.textContent = '';
-        msg.classList.remove('fade');
-        hint.classList.remove('ctb-gone');
-
-        vid.currentTime = 0;
-        duration = vid.duration || 0;
-        if (!duration) {
-          vid.addEventListener('loadedmetadata', function h() {
-            duration = vid.duration; vid.removeEventListener('loadedmetadata', h);
-          });
+      // Poll every 400ms until the hero video appears in DOM
+      var attempts = 0;
+      var poll = setInterval(function() {
+        attempts++;
+        var v = document.querySelector('video[src="/hero.mp4"]');
+        if (v && v !== _v) {
+          _v = v;
+          initVideo(v);
         }
-
-        ov.classList.remove('ctb-closing');
-        ov.classList.add('ctb-active');
-        document.body.style.overflow = 'hidden';
-        isActive = true;
-      }
-
-      // ── Wheel / Trackpad (desktop) ──
-      ov.addEventListener('wheel', function(e) {
-        e.preventDefault();
-        // deltaMode 0 = pixels (trackpad), 1 = lines (mouse wheel), 2 = pages
-        var delta = e.deltaY;
-        if (e.deltaMode === 1) delta *= 20;   // line → px
-        if (e.deltaMode === 2) delta *= 400;  // page → px
-        onScroll(Math.abs(delta));
-      }, { passive: false });
-
-      // ── Touch (mobile swipe up) ──
-      ov.addEventListener('touchstart', function(e) {
-        touchLastY = e.touches[0].clientY;
-      }, { passive: true });
-      ov.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-        var dy = touchLastY - e.touches[0].clientY;
-        touchLastY = e.touches[0].clientY;
-        onScroll(Math.abs(dy) * 3);
-      }, { passive: false });
-
-      // ── Skip ──
-      skip.addEventListener('click', function(e) {
-        e.stopPropagation(); isActive = false; finish();
-      });
-
-      // ── Keyboard ──
-      document.addEventListener('keydown', function(e) {
-        if (!isActive) return;
-        if (e.code === 'ArrowDown' || e.code === 'Space') { onScroll(200); e.preventDefault(); }
-        if (e.code === 'Escape') { isActive = false; finish(); }
-      });
-
-      // ── Triggers ──
-      window._showBuildIntro = show;
-
-      window.addEventListener('load', function() {
-        if (window.location.hash === '#propiedades') setTimeout(show, 400);
-      });
-      window.addEventListener('hashchange', function() {
-        if (window.location.hash === '#propiedades') show();
-      });
+        if (attempts > 60) clearInterval(poll); // give up after 24s
+      }, 400);
 
     })();
     </script>
-    <!-- ══ /SCROLL TO BUILD ═══════════════════════════════════════════════════ -->
+    <!-- ══ /Hero Video Polish ═════════════════════════════════════════════════ -->
 
     <!-- ── Floating WhatsApp Button ──────────────────────────────── -->
     <style>
