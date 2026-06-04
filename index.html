@@ -307,7 +307,7 @@
     <style>
       /* ── Overlay ── */
       #ctb-overlay {
-        position: fixed; inset: 0; z-index: 9200;
+        position: fixed; inset: 0; z-index: 10100;
         background: #011110; cursor: pointer;
         display: none; overflow: hidden;
         font-family: 'Inter', sans-serif;
@@ -612,8 +612,20 @@
         finish();
       });
 
-      // Expose globally so the React bundle can call it directly
+      // ── Trigger 1: nav click (React bundle calls this directly)
       window._showBuildIntro = show;
+
+      // ── Trigger 2: direct URL load / reload on #propiedades
+      window.addEventListener('load', function() {
+        if (window.location.hash === '#propiedades') {
+          setTimeout(show, 400); // wait for React to render first
+        }
+      });
+
+      // ── Trigger 3: hashchange (back/forward browser buttons)
+      window.addEventListener('hashchange', function() {
+        if (window.location.hash === '#propiedades') show();
+      });
 
       // Keyboard: Space or Enter also advances
       document.addEventListener('keydown', function(e) {
