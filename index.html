@@ -420,7 +420,7 @@
 
     <script>
     (function() {
-      var TOTAL = 2800;   // total px of scroll needed to complete
+      var TOTAL = 12000;  // px of scroll to complete (more = finer frames per scroll)
       var accumulated = 0;
       var progress = 0;
       var isActive = false;
@@ -428,6 +428,8 @@
       var finished = false;
       var lastMsg = -1;
       var touchLastY = 0;
+      var rafPending = false;
+      var pendingTime = -1;
 
       var MSGS = [
         'Preparando el terreno…',
@@ -467,9 +469,16 @@
           duration = vid.duration && isFinite(vid.duration) ? vid.duration : 0;
         }
 
-        // Scrub video
+        // Scrub video — throttled to one seek per animation frame (60fps max)
         if (duration > 0) {
-          vid.currentTime = progress * duration;
+          pendingTime = progress * duration;
+          if (!rafPending) {
+            rafPending = true;
+            requestAnimationFrame(function() {
+              if (pendingTime >= 0) vid.currentTime = pendingTime;
+              rafPending = false;
+            });
+          }
         }
 
         // Progress bar — no transition for real-time feel
@@ -519,10 +528,14 @@
         isActive = true;
       }
 
-      // ── Wheel (desktop) ──
+      // ── Wheel / Trackpad (desktop) ──
       ov.addEventListener('wheel', function(e) {
         e.preventDefault();
-        onScroll(Math.abs(e.deltaY));
+        // deltaMode 0 = pixels (trackpad), 1 = lines (mouse wheel), 2 = pages
+        var delta = e.deltaY;
+        if (e.deltaMode === 1) delta *= 20;   // line → px
+        if (e.deltaMode === 2) delta *= 400;  // page → px
+        onScroll(Math.abs(delta));
       }, { passive: false });
 
       // ── Touch (mobile swipe up) ──
@@ -531,9 +544,9 @@
       }, { passive: true });
       ov.addEventListener('touchmove', function(e) {
         e.preventDefault();
-        var dy = touchLastY - e.touches[0].clientY; // positive = swipe up
+        var dy = touchLastY - e.touches[0].clientY;
         touchLastY = e.touches[0].clientY;
-        onScroll(dy * 2.5); // amplify touch
+        onScroll(Math.abs(dy) * 3);
       }, { passive: false });
 
       // ── Skip ──
